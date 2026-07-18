@@ -1,26 +1,202 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   DESIGN SYSTEM — Editorial Luxury / Business Journal
+   ============================================================ */
+
+@theme {
+  /* --- Core palette --- */
+  --color-paper: #f5f2ec;        /* off-white ground */
+  --color-paper-dim: #ece7dd;    /* recessed panels */
+  --color-graphite: #1a1c1e;     /* primary ink */
+  --color-graphite-soft: #3a3d40;
+  --color-navy: #0b1f3a;         /* deep navy */
+  --color-navy-soft: #14304f;
+  --color-emerald: #0f5c4c;      /* signature accent */
+  --color-emerald-bright: #10836a;
+  --color-gold: #c6a15b;         /* warm gold */
+  --color-cyan: #7fd1d6;         /* soft cyan */
+  --color-ink-40: rgba(26, 28, 30, 0.4);
+  --color-ink-15: rgba(26, 28, 30, 0.14);
+  --color-ink-08: rgba(26, 28, 30, 0.08);
+
+  /* --- Dark ground (used in immersive chapters) --- */
+  --color-obsidian: #0a0e14;
+  --color-obsidian-soft: #101620;
+
+  /* --- Fonts (bound to next/font variables) --- */
+  --font-display: var(--font-display), Georgia, serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-mono: var(--font-mono), monospace;
+
+  /* --- Fluid type scale --- */
+  --text-mega: clamp(3.2rem, 12vw, 12rem);
+  --text-hero: clamp(2.6rem, 8vw, 7.5rem);
+  --text-h1: clamp(2.2rem, 5.5vw, 5rem);
+  --text-h2: clamp(1.7rem, 3.6vw, 3.2rem);
+  --text-h3: clamp(1.3rem, 2.2vw, 2rem);
+
+  /* --- Easings --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   BASE
+   ============================================================ */
+
+* {
+  border-color: var(--color-ink-15);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis owns scrolling */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-graphite);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv01", "cv11";
+  overflow-x: hidden;
+}
+
+/* Hide native cursor when custom cursor is active (pointer devices only) */
+@media (hover: hover) and (pointer: fine) {
+  body.cursor-hidden,
+  body.cursor-hidden * {
+    cursor: none !important;
+  }
+}
+
+::selection {
+  background: var(--color-emerald);
+  color: var(--color-paper);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+
+.font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.display-mega {
+  font-family: var(--font-display);
+  font-size: var(--text-mega);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+.display-hero {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+}
+.display-h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+.display-h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+}
+
+.measure {
+  max-width: 62ch;
+}
+.measure-tight {
+  max-width: 46ch;
+}
+
+/* ============================================================
+   TEXTURE & DECOR
+   ============================================================ */
+
+/* Subtle paper grain */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hairline {
+  height: 1px;
+  background: var(--color-ink-15);
+}
+
+.glass {
+  background: rgba(245, 242, 236, 0.6);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+}
+.glass-dark {
+  background: rgba(10, 14, 20, 0.5);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+
+/* Reveal primitive fallback (JS enhances) */
+.will-reveal {
+  will-change: transform, opacity;
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-emerald);
+  outline-offset: 3px;
+  border-radius: 2px;
 }

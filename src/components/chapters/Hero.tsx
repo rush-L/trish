@@ -1,0 +1,107 @@
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { profile } from "@/content/profile";
+import { EASE_OUT_EXPO, maskUp, stagger } from "@/lib/motion";
+
+export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const ghostX = useTransform(scrollYProgress, [0, 1], ["0%", "-18%"]);
+
+  return (
+    <section
+      id="top"
+      ref={ref}
+      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden px-6 pb-10 pt-28 md:px-10"
+    >
+      {/* Oversized ghost word drifting in the background */}
+      <motion.span
+        aria-hidden
+        style={{ x: ghostX }}
+        className="pointer-events-none absolute -bottom-[6vw] left-[-4vw] select-none font-display text-[34vw] leading-none text-graphite/[0.04]"
+      >
+        RMP
+      </motion.span>
+
+      {/* Emerald aura */}
+      <div className="pointer-events-none absolute right-[-10%] top-[10%] h-[45vw] w-[45vw] rounded-full bg-emerald/10 blur-[120px]" />
+
+      {/* Top meta row */}
+      <motion.div
+        style={{ opacity }}
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 0.2 }}
+        className="relative z-10 flex items-center justify-between"
+      >
+        <span className="kicker text-ink-40">{profile.title}</span>
+        <span className="kicker hidden text-ink-40 md:block">{profile.location}</span>
+      </motion.div>
+
+      {/* Headline */}
+      <motion.div style={{ y, opacity }} className="relative z-10 my-auto">
+        <motion.h1
+          variants={stagger(0.35, 0.09)}
+          initial="hidden"
+          animate="show"
+          className="display-mega max-w-[14ch]"
+        >
+          {profile.heroLine.map((w, i) => (
+            <span key={i} className="inline-block overflow-hidden pr-[0.18em] align-top">
+              <motion.span
+                variants={maskUp}
+                className={`inline-block ${w === "signature." ? "italic text-emerald" : ""}`}
+              >
+                {w}
+              </motion.span>
+            </span>
+          ))}
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.1 }}
+          className="measure mt-8 text-lg leading-relaxed text-graphite-soft md:text-xl"
+        >
+          {profile.heroSub}
+        </motion.p>
+      </motion.div>
+
+      {/* Bottom row: name + scroll cue */}
+      <motion.div
+        style={{ opacity }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.3 }}
+        className="relative z-10 flex items-end justify-between"
+      >
+        <div className="flex items-baseline gap-3">
+          <span className="font-display text-2xl md:text-3xl">{profile.fullName}</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-emerald">
+            {profile.credential}
+          </span>
+        </div>
+        <a
+          href="#ch1"
+          data-cursor="Read"
+          className="group flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-40"
+        >
+          Scroll
+          <motion.span
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            className="inline-block h-8 w-px bg-graphite/40"
+          />
+        </a>
+      </motion.div>
+    </section>
+  );
+}
