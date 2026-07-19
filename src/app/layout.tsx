@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { fraunces, inter, jetbrains } from "@/lib/fonts";
 import { profile } from "@/content/profile";
 import SmoothScroll from "@/components/providers/SmoothScroll";
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <Cursor />
         <SmoothScroll>{children}</SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );
