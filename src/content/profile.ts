@@ -1,62 +1,83 @@
 /* ============================================================================
    PROFILE — SINGLE SOURCE OF TRUTH
    ----------------------------------------------------------------------------
-   Every factual detail on the site lives here. When the ATS résumé arrives,
-   update ONLY this file and the entire experience re-renders correctly.
-
-   🔶 = placeholder to confirm/replace from the résumé.
+   Every factual detail on the site lives here. Update ONLY this file and the
+   entire experience re-renders correctly.
    ============================================================================ */
 
 export const profile = {
   // --- Identity -------------------------------------------------------------
-  firstName: "Trisha", // 🔶 confirm
-  lastName: "Delacruz", // 🔶 replace with real surname
-  fullName: "Trisha Delacruz", // 🔶
+  firstName: "Trisha",
+  lastName: "Capapas",
+  fullName: "Trisha S. Capapas",
   credential: "RMP", // Registered Marketing Professional
   credentialFull: "Registered Marketing Professional",
-  title: "Marketing Strategist · Operations & Innovation Leader",
-  location: "Metro Manila, Philippines", // 🔶 confirm
-  email: "hello@trisha.example", // 🔶 replace
+  title: "Area Manager · Field Operations & Marketing",
+  location: "Metro Manila, Philippines",
+  email: "trishasoliscapapas@gmail.com",
+  resumeUrl: "/resume/trisha-capapas-resume.pdf",
+  // 🔶 single source for the production domain — swap once deployed (e.g. to
+  // Vercel) and canonical URLs, OpenGraph, robots.txt, and sitemap.xml all
+  // pick it up automatically.
+  siteUrl: "https://trisha.example",
   socials: [
-    { label: "LinkedIn", href: "#" }, // 🔶
-    { label: "Email", href: "mailto:hello@trisha.example" }, // 🔶
+    { label: "LinkedIn", href: "https://linkedin.com/in/trisha-capapas-113a48293" },
+    { label: "Email", href: "mailto:trishasoliscapapas@gmail.com" },
+    { label: "Phone", href: "tel:+639760032536" },
   ],
 
   // --- The one-line brand statement ----------------------------------------
   statement:
-    "She turns marketing into momentum — where strategy, operations, and data converge into growth.",
+    "She turns field operations into momentum — leading teams, building the tools they run on, and keeping the promise between strategy and execution.",
+
+  // --- Executive summary (HR scan target: understood in 15 seconds) --------
+  summary:
+    "Trisha Capapas is a Registered Marketing Professional based in Metro Manila, currently leading field operations and marketing execution for ActivAsia Inc. In two years she moved from intern to Area Manager, now directing 116 people across 59 Puregold stores in Greater Manila. Her core strength is pairing operational leadership with a builder's instinct — she designed the internal reporting tool 1,000+ employees now rely on. She combines marketing strategy, process design, and hands-on team leadership to turn field complexity into measurable, repeatable results.",
 
   // --- Hero words (animated) ------------------------------------------------
   heroLine: ["Strategy", "with", "a", "signature."],
   heroSub:
-    "A Registered Marketing Professional who reads the numbers, leads the room, and rebuilds the process — so growth is never an accident.",
+    "A Registered Marketing Professional leading 116 people across 59 stores in Greater Manila — building the tools her team runs on and turning field data into decisions that stick.",
 
-  // ==========================================================================
-  // CHAPTER 1 — THE MIND BEHIND THE STRATEGY (philosophy, not résumé)
-  // ==========================================================================
-  philosophy: {
-    kicker: "Chapter 01 — The Mind Behind the Strategy",
-    title: "Marketing is a system of decisions, not a stack of campaigns.",
-    body: [
-      "She doesn't start with a slogan. She starts with a question: what does the business actually need to move?",
-      "Every brand she touches gets the same discipline — understand the customer, map the operation behind the promise, and let the data settle the argument. Creativity is the reward for getting the thinking right.",
-    ],
-    // Three operating beliefs
-    tenets: [
+  // --- Imagery ----------------------------------------------------------
+  // Portrait + field/proof photography, wired into Hero, Journey, Work, Human.
+  media: {
+    portrait: "/images/profile/portrait.jpg",
+    credentials: [
       {
-        no: "01",
-        head: "Clarity before creativity",
-        text: "A sharp idea on a blurry problem still misses. Define the problem until the solution is obvious.",
+        label: "RMP Certification",
+        issuer: "Chartered Association of Marketing and Business Professionals",
+        src: "/images/credentials/rmp-certification.jpg",
       },
       {
-        no: "02",
-        head: "The operation is the message",
-        text: "How a company delivers is what customers actually believe. Fix the process and the brand follows.",
+        label: "Advanced Google Analytics",
+        issuer: "Google Analytics Academy",
+        src: "/images/credentials/google-analytics.jpg",
       },
       {
-        no: "03",
-        head: "Decide with evidence",
-        text: "Intuition sets the hypothesis; data settles it. Every initiative earns its place with a number.",
+        label: "Unilever Training Curriculum 1",
+        issuer: "Unilever Philippines · PRID3 University",
+        src: "/images/credentials/unilever-training.jpg",
+      },
+      {
+        label: "Unilever Training Curriculum 2",
+        issuer: "Unilever Philippines · PRID3 University",
+        src: "/images/credentials/unilever-training-2.jpg",
+      },
+      {
+        label: "Power Up With People: Leadership Training",
+        issuer: "ActivAsia Inc.",
+        src: "/images/credentials/activasia-leadership-training.jpg",
+      },
+      {
+        label: "MS Advanced Excel Certification",
+        issuer: "Mapúa University · Innovation and Development Office",
+        src: "/images/credentials/advanced-excel-certificate.png",
+      },
+      {
+        label: "Power BI Certification",
+        issuer: "Mapúa University · Innovation and Development Office",
+        src: "/images/credentials/power-bi-certificate.png",
       },
     ],
   },
@@ -65,123 +86,127 @@ export const profile = {
   // CHAPTER 2 — FROM CURIOSITY TO LEADERSHIP (the journey)
   // ==========================================================================
   journey: {
-    kicker: "Chapter 02 — From Curiosity to Leadership",
+    kicker: "From Curiosity to Leadership",
     title: "A line drawn from a curious student to a leader who ships.",
     intro:
-      "Not a list of jobs — a trajectory. Each step widened the aperture: from learning the craft, to owning outcomes, to leading the people who deliver them.",
-    // ordered chapters of her career
+      "Not a list of jobs — a trajectory. Four roles at one company, each widening the aperture: from learning the craft, to owning outcomes, to leading the people who deliver them.",
+    // most recent role first — HR scans current position before history
     stages: [
       {
-        year: "20XX", // 🔶
-        role: "The Student",
-        org: "Bachelor's in Marketing", // 🔶 institution + degree
-        honor: "Magna Cum Laude",
-        narrative:
-          "Graduated Magna Cum Laude — not for memorizing frameworks, but for asking why they work. Curiosity became a method.",
-      },
-      {
-        year: "20XX", // 🔶
-        role: "Marketing Intern",
-        org: "🔶 Company",
-        narrative:
-          "First contact with the real machine. Learned that a campaign is only as good as the operation standing behind it.",
-      },
-      {
-        year: "20XX", // 🔶
-        role: "Marketing Coordinator",
-        org: "🔶 Company",
-        narrative:
-          "Took ownership of the moving parts — calendars, channels, cross-team hand-offs. Turned scattered activity into a system that could be measured.",
-      },
-      {
-        year: "20XX", // 🔶
-        role: "Innovation Associate",
-        org: "🔶 Company",
-        narrative:
-          "Chartered to question the status quo. Redesigned processes and piloted new ideas, proving that innovation is a discipline, not a mood.",
-      },
-      {
-        year: "20XX", // 🔶
+        year: "2026–Present",
         role: "Area Manager",
-        org: "🔶 Company",
+        org: "ActivAsia Inc.",
+        bullets: [
+          "Led a 116-person team (3 Field Supervisors, 113 Merchandisers) across 59 Puregold stores in Greater Manila",
+          "Directed daily field operations, resolving issues in real time using live field and competitor data",
+          "Turned leadership into a daily coaching practice, sustaining consistent execution at scale",
+        ],
         narrative:
-          "Full ownership of people, performance, and P&L across a region. Leadership stopped being a title and became a daily practice.",
+          "Full ownership of people and performance across 59 Puregold stores in Greater Manila — leading 3 Field Supervisors and 113 Merchandisers. Leadership stopped being a title and became a daily practice.",
+        image: "/images/journey/area-manager.jpg",
       },
       {
-        year: "20XX", // 🔶
-        role: "Registered Marketing Professional",
-        org: "PRC / RMP Credential", // 🔶 confirm issuing body
-        honor: "RMP",
+        year: "2025",
+        role: "Innovation Associate",
+        org: "ActivAsia Inc.",
+        bullets: [
+          "Designed and shipped an internal attendance & reporting tool now used by 1,000+ employees",
+          "Replaced manual tracking with a scalable process, cutting reporting friction company-wide",
+          "Proved that innovation could be systemized, not just improvised",
+        ],
         narrative:
-          "Earned the RMP credential — a formal mark that the instinct had become expertise, tested and recognized.",
+          "Chartered to question the status quo. Designed and implemented an internal tool now used by 1,000+ employees, proving that innovation is a discipline, not a mood.",
+        image: "/images/journey/innovation-associate.jpg",
+      },
+      {
+        year: "2024",
+        role: "Activation Merchandising Coordinator",
+        org: "ActivAsia Inc.",
+        bullets: [
+          "Coordinated activations across multiple field teams while enforcing brand and campaign guidelines",
+          "Consolidated scattered field reports into a single view leadership could act on",
+          "Monitored on-ground execution to keep campaigns audit-ready and on-brand",
+        ],
+        narrative:
+          "Took ownership of the moving parts — coordinating activations against brand guidelines, monitoring field execution, and consolidating results into reports leadership could act on.",
+      },
+      {
+        year: "2024",
+        role: "Intern",
+        org: "ActivAsia Inc.",
+        bullets: [
+          "Supported operations and merchandising teams during onboarding to the field",
+          "Learned firsthand that a campaign is only as strong as the operation behind it",
+        ],
+        narrative:
+          "First contact with the real machine — supporting operations and merchandising teams, and learning that a campaign is only as good as the operation standing behind it.",
+      },
+      {
+        year: "2020–2024",
+        role: "The Student",
+        org: "Polytechnic University of the Philippines",
+        honor: "Magna Cum Laude",
+        bullets: [
+          "Earned a BS in Business Administration, Marketing Management",
+          "Graduated Magna Cum Laude and President's Lister for all four years",
+          "Built a foundation in marketing strategy by questioning why frameworks work, not just applying them",
+        ],
+        narrative:
+          "Graduated Magna Cum Laude and President's Lister all four years — not for memorizing frameworks, but for asking why they work. Curiosity became a method.",
+        image: "/images/profile/graduation.png",
       },
     ],
   },
 
   // ==========================================================================
-  // CHAPTER 3 — MARKETING BEYOND CAMPAIGNS
+  // CHAPTER 4 — ACHIEVEMENTS & CREDIBILITY (proof, not prose)
   // ==========================================================================
-  beyond: {
-    kicker: "Chapter 03 — Marketing Beyond Campaigns",
-    title: "Marketing that reaches past the ad and into the business.",
-    lead:
-      "Ask most people what marketing is and they'll say advertising. She sees the whole system — and the leverage hidden inside it.",
-    domains: [
-      {
-        head: "Operations",
-        text: "Streamlined workflows so the promise made in marketing is the promise kept in delivery.",
-      },
-      {
-        head: "Processes",
-        text: "Rebuilt repeatable systems that cut friction and made good outcomes the default, not the exception.",
-      },
-      {
-        head: "Customer Experience",
-        text: "Designed every touchpoint as a decision — from first impression to the moment loyalty is earned.",
-      },
-      {
-        head: "Team Performance",
-        text: "Turned individual effort into collective momentum through clear goals and honest feedback.",
-      },
-      {
-        head: "Decision Making",
-        text: "Replaced opinion-led debate with evidence-led choices the whole team could stand behind.",
-      },
-    ],
-  },
-
-  // ==========================================================================
-  // CHAPTER 4 — THE NUMBERS BEHIND THE STORY (analytics dashboard)
-  // ==========================================================================
-  dashboard: {
-    kicker: "Chapter 04 — The Numbers Behind the Story",
-    title: "A capability profile, read like a report — not a progress bar.",
-    note: "Self-assessed capability, weighted by years applied in role. 🔶 tune to résumé.",
-    // radial / bar values are relative capability, 0–100
-    competencies: [
-      { label: "Leadership", value: 92, note: "Region-level team & P&L ownership" },
-      { label: "Operations", value: 88, note: "Process & workflow redesign" },
-      { label: "Innovation", value: 90, note: "Pilots, R&D, new-model design" },
-      { label: "Analytics", value: 85, note: "Reporting, dashboards, decisions" },
-      { label: "Marketing", value: 94, note: "Strategy, brand, go-to-market" },
-      { label: "Communication", value: 89, note: "Stakeholders, teams, clients" },
-      { label: "Project Mgmt", value: 87, note: "Delivery across cross-functional teams" },
-    ],
-    // headline metrics (marquee KPIs) 🔶 replace with real, verifiable numbers
+  achievements: {
+    kicker: "Achievements & Credibility",
+    title: "The proof behind the promise.",
+    // headline metrics (marquee KPIs)
     kpis: [
-      { value: "5", suffix: "", label: "roles, one trajectory", sub: "Intern → Area Manager" },
-      { value: "Magna", suffix: "", label: "Cum Laude", sub: "Academic distinction" },
-      { value: "RMP", suffix: "", label: "credential", sub: "Registered Marketing Professional" },
-      { value: "100", suffix: "%", label: "systems mindset", sub: "Strategy meets operations" },
+      { value: "59", suffix: "", label: "stores managed", sub: "Puregold, Greater Manila Area" },
+      { value: "116", suffix: "", label: "team members led", sub: "3 Field Supervisors + 113 Merchandisers" },
+      { value: "1000", suffix: "+", label: "tool users", sub: "Internal attendance & reporting system" },
+      { value: "4", suffix: "", label: "roles in 2 years", sub: "Intern → Area Manager, ActivAsia Inc." },
+      { value: "Magna", suffix: " Cum Laude", label: "academic distinction", sub: "President's Lister, 2020–2024" },
     ],
-    // a small time-series to render as a line chart 🔶 illustrative
-    trajectory: [
-      { period: "Student", index: 20 },
-      { period: "Intern", index: 34 },
-      { period: "Coordinator", index: 52 },
-      { period: "Innovation", index: 70 },
-      { period: "Area Mgr", index: 88 },
-      { period: "RMP", index: 100 },
+    credentialsKicker: "Proof, not just claims",
+  },
+
+  // ==========================================================================
+  // CHAPTER — SKILLS (organized, evidence-only)
+  // ==========================================================================
+  skills: {
+    kicker: "Skills",
+    title: "What she brings into the room.",
+    categories: [
+      {
+        label: "Leadership",
+        proof: "Leads 116 people across 59 stores",
+        items: ["Team Leadership", "Coaching", "Stakeholder Management"],
+      },
+      {
+        label: "Operations",
+        proof: "Owns execution across 59 Puregold stores",
+        items: ["Field Operations", "Store & Territory Management", "Process Design"],
+      },
+      {
+        label: "Project & Process Management",
+        proof: "Shipped the tool 1,000+ employees run on",
+        items: ["Cross-functional Coordination", "Process Rollout", "Issue Resolution"],
+      },
+      {
+        label: "Financial & Compliance",
+        proof: "Trusted with budget, liquidation & compliance",
+        items: ["Budget Management", "Liquidation Reporting", "Government Compliance"],
+      },
+      {
+        label: "Data & Analytics",
+        proof: "Power BI & Advanced Excel certified",
+        items: ["Power BI", "Advanced Excel", "Google Analytics"],
+      },
     ],
   },
 
@@ -189,132 +214,148 @@ export const profile = {
   // CHAPTER 5 — SELECTED WORK (case studies as stories)
   // ==========================================================================
   work: {
-    kicker: "Chapter 05 — Selected Work",
+    kicker: "Selected Work",
     title: "Fewer projects. Deeper stories.",
     projects: [
       {
         index: "01",
-        name: "🔶 Regional Turnaround", // 🔶 real project
+        name: "Field Operations Across Puregold & DT Stores",
         tag: "Operations · Leadership",
-        year: "20XX",
+        year: "2026",
+        company: "ActivAsia Inc.",
+        role: "Area Manager",
+        duration: "2026–Present",
+        metrics: ["59 stores", "116-person team"],
         problem:
-          "A region underperforming against target, with teams working hard but pulling in different directions.",
-        challenge:
-          "Fix results without burning out people — and make the fix stick after the spotlight moved on.",
-        thinking:
-          "Treated it as a systems problem, not a motivation problem. Mapped where effort leaked before it reached the customer.",
-        strategy:
-          "Aligned every team on a single scoreboard, redesigned the weekly operating rhythm, and removed three redundant steps.",
-        execution:
-          "Rolled out in stages with clear owners, weekly evidence reviews, and fast course-correction.",
+          "59 Puregold and DT stores across Greater Manila needed consistent activation, merchandising, and promotional execution — with results riding on the daily judgment of 116 frontline people, and no room to slow the teams closest to the shelf.",
+        responsibilities: [
+          "Built a direct coaching rhythm for 3 Field Supervisors",
+          "Standardized issue-resolution steps across the store network",
+          "Fed market and competitor insight back into weekly planning",
+          "Ran daily supervision, resolving issues as they surfaced",
+        ],
         outcome:
-          "🔶 Quantified result — e.g. performance recovered to/above target within X months, retention up.",
-        lessons:
-          "People don't resist change; they resist confusion. Clarity was the real intervention.",
-        future:
-          "Codify the operating rhythm into a playbook other regions can adopt without a rebuild.",
+          "Sustains operations across 59 stores and a 116-person team, with field feedback now shaping promotional and merchandising decisions.",
+        takeaway:
+          "Scale doesn't come from adding oversight — it comes from a team that can make the right call without waiting for one. Next: formalize the coaching rhythm into a playbook other regions can adopt.",
+        gallery: [
+          { src: "/images/work/store-visit-1.jpg", caption: "Global visit of Smollan CEOs and Unilever team." },
+          { src: "/images/work/store-visit-2.jpg", caption: "Walking the floor with the field team." },
+          { src: "/images/work/store-visit-3.jpg", caption: "Checking shelf execution on the ground." },
+          { src: "/images/work/store-visit-4.jpg", caption: "On-site with Merchandisers at a Puregold store." },
+          { src: "/images/work/store-visit-5.jpg", caption: "Store visit — reviewing activation compliance." },
+          { src: "/images/work/store-visit-6.jpg", caption: "Field visit across the Greater Manila territory." },
+          { src: "/images/work/store-visit-7.jpg", caption: "On the floor with the Field Supervisor team." },
+          {
+            src: "/images/work/store-visit-8.jpg",
+            caption: "Store visit — coaching the team on the ground.",
+            focus: "center 25%",
+          },
+          { src: "/images/work/store-visit-9.jpg", caption: "Field operations, store-level execution check." },
+          { src: "/images/work/unilever-training-am-1.jpg", caption: "Unilever training curriculum, PRID3 University." },
+          {
+            src: "/images/work/unilever-training-am-2.jpg",
+            caption: "Project Eddgie execution.",
+            focus: "center 25%",
+          },
+        ],
       },
       {
         index: "02",
-        name: "🔶 Process Innovation Pilot",
-        tag: "Innovation · Analytics",
-        year: "20XX",
+        name: "An Internal Tool Built for 1,000+ Users",
+        tag: "Innovation · Process Design",
+        year: "2025",
+        company: "ActivAsia Inc.",
+        role: "Innovation Associate",
+        duration: "2025",
+        metrics: ["1,000+ users"],
         problem:
-          "A core process everyone accepted as 'just how it works' — slow, manual, and quietly expensive.",
-        challenge:
-          "Prove a better way with limited budget and skeptical stakeholders who'd seen pilots fizzle before.",
-        thinking:
-          "Started from the data, not the opinion. Measured the true cost of the status quo to make the case undeniable.",
-        strategy:
-          "Designed a lean pilot with a clear hypothesis, a control, and a single metric that mattered.",
-        execution:
-          "Ran the pilot tight and transparent, sharing results in the open so momentum built on its own.",
+          "Attendance tracking and reporting relied on manual, inconsistent processes that didn't scale with headcount — and any new system had to roll out without disrupting a team already relying on the old one.",
+        responsibilities: [
+          "Mapped end-user workflows before writing a single requirement",
+          "Coordinated cross-functional teams to align the tool with business objectives",
+          "Designed and implemented a scalable rollout process",
+          "Resolved issues through direct analysis and stakeholder coordination",
+        ],
         outcome:
-          "🔶 Quantified result — e.g. cycle time cut by X%, adopted org-wide.",
-        lessons:
-          "The hardest part of innovation isn't the idea — it's the evidence that earns permission to scale.",
-        future:
-          "Extend the framework into adjacent processes and instrument it for continuous improvement.",
+          "Adopted by more than 1,000 users, measurably improving attendance tracking and reporting efficiency company-wide.",
+        takeaway:
+          "Adoption is a design problem before it's a technology problem. Next: extend the same tooling discipline to other manual, high-friction processes.",
+        gallery: [
+          {
+            src: "/images/work/internal-tool.png",
+            caption: "Cascading the Refillers Attendance App to the wider team.",
+          },
+          {
+            src: "/images/work/refillers-attendance-cascade.jpg",
+            caption: "Refillers Attendance App cascade — full team call, 55 attendees.",
+          },
+          {
+            src: "/images/work/compliance-update-presentation.jpg",
+            caption: "Presenting the Applications Compliance Update in person.",
+          },
+          {
+            src: "/images/work/compliance-update-room.jpg",
+            caption: "The room during the Applications Compliance Update briefing.",
+          },
+          {
+            src: "/images/work/activasia-unilever-review-1.jpg",
+            caption: "ActivAsia × Unilever business review.",
+          },
+          {
+            src: "/images/work/activasia-unilever-review-2.jpg",
+            caption: "Business review, cross-functional alignment session.",
+          },
+          {
+            src: "/images/work/activasia-unilever-review-3.jpg",
+            caption: "ActivAsia × Unilever business review, full team.",
+          },
+          {
+            src: "/images/work/activasia-unilever-review-4.jpg",
+            caption: "Business review — planning session with stakeholders.",
+          },
+          {
+            src: "/images/work/one-unilever-core-team-1.jpg",
+            caption: "One Unilever Core Team.",
+          },
+          {
+            src: "/images/work/one-unilever-core-team-2.jpg",
+            caption: "One Unilever Core Team — celebrating a milestone.",
+          },
+          {
+            src: "/images/work/one-unilever-core-team-3.jpg",
+            caption: "One Unilever Core Team, on site.",
+          },
+          {
+            src: "/images/work/one-unilever-core-team-4.jpg",
+            caption: "One Unilever Core Team — team photo.",
+          },
+        ],
       },
       {
         index: "03",
-        name: "🔶 Go-To-Market Reframe",
-        tag: "Marketing · Strategy",
-        year: "20XX",
+        name: "Merchandising Activation & Field Reporting",
+        tag: "Marketing · Execution",
+        year: "2024",
+        company: "ActivAsia Inc.",
+        role: "Activation Merchandising Coordinator",
+        duration: "2024",
+        metrics: [] as string[],
         problem:
-          "A strong offer that wasn't landing — the message described the product, not the customer's problem.",
-        challenge:
-          "Reposition without alienating the existing audience, and do it on a marketing calendar already in motion.",
-        thinking:
-          "Went back to the customer's own words. Rebuilt the narrative around the outcome they were buying.",
-        strategy:
-          "Sharpened positioning, rebuilt the funnel around intent, and aligned sales and marketing on one story.",
-        execution:
-          "Sequenced the relaunch across channels with tight measurement at each stage.",
+          "Merchandising activations needed to stay true to brand guidelines and campaign objectives across multiple field teams — while scattered field results needed consolidating into something leadership could actually act on.",
+        responsibilities: [
+          "Coordinated activations against brand and campaign objectives",
+          "Monitored field execution closely for on-brand compliance",
+          "Supported operations teams end-to-end, from planning to on-ground execution",
+        ],
         outcome:
-          "🔶 Quantified result — e.g. conversion up X%, CAC down, pipeline quality improved.",
-        lessons:
-          "Positioning isn't what you say about yourself — it's the problem customers hire you to solve.",
-        future:
-          "Build an always-on testing loop so the message keeps sharpening as the market shifts.",
+          "Consistent, on-brand execution across activations, with reporting that showed leadership field reality — not just plans.",
+        takeaway:
+          "A report is only useful if it reflects what actually happened on the ground. Next: build a standing feedback loop from field data straight back into campaign planning.",
+        video: "/images/work/acme-app-demo.mp4",
+        imageCaption: "A walkthrough of the ACME activation reporting app.",
       },
     ],
-  },
-
-  // ==========================================================================
-  // CHAPTER 6 — HOW I THINK (frameworks)
-  // ==========================================================================
-  think: {
-    kicker: "Chapter 06 — How I Think",
-    title: "The frameworks behind the decisions.",
-    frameworks: [
-      {
-        no: "01",
-        name: "Problem before solution",
-        steps: ["Define", "Diagnose", "Design", "Decide"],
-        text: "Most failed initiatives solved the wrong problem beautifully. She spends the effort up front so the solution is almost inevitable.",
-      },
-      {
-        no: "02",
-        name: "The growth equation",
-        steps: ["Acquire", "Activate", "Retain", "Expand"],
-        text: "Growth isn't a single lever — it's a chain. She finds the weakest link and strengthens it before adding spend.",
-      },
-      {
-        no: "03",
-        name: "Lead the system, not the task",
-        steps: ["Clarify", "Enable", "Measure", "Trust"],
-        text: "Leadership is designing conditions where good work is the natural outcome — then getting out of the way.",
-      },
-    ],
-    principles: [
-      "Strong opinions, loosely held — updated the moment the data disagrees.",
-      "If it can't be measured, define what would count as success before you start.",
-      "The best process is the one the team will actually use.",
-      "Respect the customer's intelligence; they can tell when the promise and the operation don't match.",
-    ],
-  },
-
-  // ==========================================================================
-  // CHAPTER 7 — BEYOND WORK (humanize)
-  // ==========================================================================
-  human: {
-    kicker: "Chapter 07 — Beyond Work",
-    title: "The person behind the professional.",
-    quote:
-      "“Discipline is the bridge between goals and accomplishment.”", // 🔶 swap for her real favorite quote
-    quoteAuthor: "— a line she keeps close", // 🔶
-    facets: [
-      { label: "Reading", value: "Business, behavioral science & the occasional novel" }, // 🔶
-      { label: "Coffee", value: "Third-wave, black, and preferably before the first meeting" }, // 🔶
-      { label: "Travel", value: "Collects cities the way others collect books" }, // 🔶
-      { label: "Music", value: "Focus playlists by day, live sets by night" }, // 🔶
-      { label: "Photography", value: "Frames the ordinary until it looks intentional" }, // 🔶
-      { label: "Volunteering", value: "Mentoring students finding their own trajectory" }, // 🔶
-    ],
-    learning: ["🔶 Data storytelling", "🔶 Advanced analytics", "🔶 Leadership at scale"],
-    lifePhilosophy:
-      "Build a career you don't need a vacation from — then take the vacation anyway.",
   },
 
   // --- Closing --------------------------------------------------------------
@@ -322,7 +363,7 @@ export const profile = {
     kicker: "The Next Chapter",
     title: "Ready for the room where decisions get made.",
     body:
-      "Not looking for a job — building a career. If you're assembling a team that treats marketing as strategy, operations, and growth in one, let's talk.",
+      "Open to the next opportunity. If you're building a team that needs execution at scale, process discipline, and leadership that ships — let's talk.",
     cta: "Start a conversation",
   },
 } as const;

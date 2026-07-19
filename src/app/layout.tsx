@@ -8,7 +8,8 @@ import "./globals.css";
 const description = `${profile.fullName}, ${profile.credentialFull} — ${profile.statement}`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://trisha.example"), // 🔶 replace with real domain
+  metadataBase: new URL(profile.siteUrl),
+  alternates: { canonical: "/" },
   title: {
     default: `${profile.fullName} — ${profile.credentialFull}`,
     template: `%s — ${profile.fullName}`,

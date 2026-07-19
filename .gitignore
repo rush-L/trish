@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# personal/private source assets (not used by the app, which only reads from /public)
+/images/
+Trisha_S_Capapas_Resume.pdf
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

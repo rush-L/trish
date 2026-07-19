@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Magnetic } from "@/components/ui/Magnetic";
 
 export function Contact() {
-  const { closing, socials, email, fullName, credential } = profile;
+  const { closing, socials, email, fullName, credential, resumeUrl } = profile;
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
   const y = useTransform(scrollYProgress, [0, 1], ["30%", "0%"]);
@@ -16,11 +16,12 @@ export function Contact() {
     <footer
       id="contact"
       ref={ref}
+      data-theme="dark"
       className="relative overflow-hidden bg-obsidian px-6 pb-12 pt-28 text-paper md:px-10 md:pt-40"
     >
-      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[40vw] w-[40vw] -translate-x-1/2 rounded-full bg-emerald/15 blur-[130px]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[40vw] w-[40vw] -translate-x-1/2 rounded-full bg-gold/15 blur-[130px]" />
 
-      <div className="relative z-10 mx-auto max-w-[1400px]">
+      <div className="relative z-10 mx-auto max-w-[1400px] lg:pr-36">
         <Reveal className="kicker mb-10 text-cyan">{closing.kicker}</Reveal>
 
         <h2 className="display-hero max-w-[16ch] font-display">{closing.title}</h2>
@@ -35,7 +36,7 @@ export function Contact() {
               className="group inline-flex items-center gap-4 rounded-full bg-paper px-8 py-5 font-mono text-sm uppercase tracking-[0.2em] text-graphite transition-colors hover:bg-gold"
             >
               {closing.cta}
-              <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+              <span aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1">→</span>
             </a>
           </Magnetic>
         </div>
@@ -61,11 +62,23 @@ export function Contact() {
                 className="group font-mono text-[11px] uppercase tracking-[0.2em] text-paper/50 transition-colors hover:text-paper"
               >
                 {s.label}
-                <span className="ml-1 inline-block transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                <span
+                  aria-hidden="true"
+                  className="ml-1 inline-block transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                >
                   ↗
                 </span>
               </a>
             ))}
+            <a
+              href={resumeUrl}
+              download
+              data-cursor="Download"
+              className="group font-mono text-[11px] uppercase tracking-[0.2em] text-gold transition-colors hover:text-paper"
+            >
+              Résumé
+              <span aria-hidden="true" className="ml-1 inline-block transition-transform group-hover:translate-y-0.5">↓</span>
+            </a>
           </div>
           <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-paper/30">
             © {new Date().getFullYear()} {fullName} — {profile.credentialFull}

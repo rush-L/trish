@@ -1,12 +1,10 @@
 import { Nav } from "@/components/ui/Nav";
 import { Hero } from "@/components/chapters/Hero";
-import { Philosophy } from "@/components/chapters/Philosophy";
+import { Summary } from "@/components/chapters/Summary";
+import { Achievements } from "@/components/chapters/Achievements";
 import { Journey } from "@/components/chapters/Journey";
-import { Beyond } from "@/components/chapters/Beyond";
-import { Dashboard } from "@/components/chapters/Dashboard";
 import { Work } from "@/components/chapters/Work";
-import { Thinking } from "@/components/chapters/Thinking";
-import { Human } from "@/components/chapters/Human";
+import { Skills } from "@/components/chapters/Skills";
 import { Contact } from "@/components/chapters/Contact";
 
 export default function Home() {
@@ -15,13 +13,11 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Philosophy />
+        <Summary />
+        <Achievements />
         <Journey />
-        <Beyond />
-        <Dashboard />
         <Work />
-        <Thinking />
-        <Human />
+        <Skills />
         <Contact />
       </main>
     </>

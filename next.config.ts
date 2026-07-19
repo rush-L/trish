@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  allowedDevOrigins: ["tweezers-rephrase-throat.ngrok-free.dev"],
 };
 
 export default nextConfig;

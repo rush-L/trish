@@ -12,11 +12,10 @@
   --color-graphite-soft: #3a3d40;
   --color-navy: #0b1f3a;         /* deep navy */
   --color-navy-soft: #14304f;
-  --color-emerald: #0f5c4c;      /* signature accent */
-  --color-emerald-bright: #10836a;
-  --color-gold: #c6a15b;         /* warm gold */
+  --color-gold: #c6a15b;         /* signature accent — dark grounds (7.97:1 on obsidian) */
+  --color-gold-ink: #8a6416;     /* signature accent — light ground (4.8:1 on paper, AA) */
   --color-cyan: #7fd1d6;         /* soft cyan */
-  --color-ink-40: rgba(26, 28, 30, 0.4);
+  --color-ink-muted: rgba(26, 28, 30, 0.62); /* ~4.6:1 on paper, passes WCAG AA */
   --color-ink-15: rgba(26, 28, 30, 0.14);
   --color-ink-08: rgba(26, 28, 30, 0.08);
 
@@ -72,7 +71,7 @@ body {
 }
 
 ::selection {
-  background: var(--color-emerald);
+  background: var(--color-gold-ink);
   color: var(--color-paper);
 }
 
@@ -196,7 +195,7 @@ html.lenis body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-emerald);
+  outline: 2px solid var(--color-gold-ink);
   outline-offset: 3px;
   border-radius: 2px;
 }
