@@ -6,6 +6,7 @@ import Image from "next/image";
 import { profile } from "@/content/profile";
 import { Reveal } from "@/components/ui/Reveal";
 import { SplitText } from "@/components/ui/SplitText";
+import { Carousel } from "@/components/ui/Carousel";
 
 // Flattened (non-union) shape so optional media fields narrow predictably —
 // `(typeof profile.work.projects)[number]` is a union of per-project literal
@@ -16,23 +17,15 @@ type Project = {
   image?: string;
   imageCaption?: string;
   video?: string;
+  tools?: string[];
+  gallery?: readonly { src: string; caption?: string; focus?: string }[];
 };
 
-const STORY_FIELDS: { key: keyof Project; label: string }[] = [
-  { key: "problem", label: "The Problem" },
-  { key: "challenge", label: "The Challenge" },
-  { key: "thinking", label: "Thinking Process" },
-  { key: "strategy", label: "Strategy" },
-  { key: "execution", label: "Execution" },
-  { key: "outcome", label: "Outcome" },
-  { key: "lessons", label: "Lessons Learned" },
-  { key: "future", label: "Future Improvements" },
-];
-
 function CaseStudy({ project, open, onToggle }: { project: Project; open: boolean; onToggle: () => void }) {
-  const { image, imageCaption, video } = project;
+  const { image, imageCaption, video, gallery, company, role, duration, metrics, tools } = project;
   const hasVideo = Boolean(video);
-  const hasMedia = Boolean(image || video);
+  const hasGallery = Boolean(gallery && gallery.length > 0);
+  const hasMedia = Boolean(image || video || hasGallery);
   const triggerId = `case-study-trigger-${project.index}`;
   const panelId = `case-study-panel-${project.index}`;
   return (
@@ -41,21 +34,36 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
         id={triggerId}
         onClick={onToggle}
         data-cursor={open ? "Close" : "Open"}
-        className="group grid w-full grid-cols-12 items-center gap-4 py-8 text-left md:py-12"
+        className="group grid w-full grid-cols-12 items-start gap-4 py-8 text-left md:items-center md:py-12"
         aria-expanded={open}
         aria-controls={panelId}
       >
-        <span className="col-span-2 font-mono text-sm text-emerald md:col-span-1">{project.index}</span>
+        <span className="col-span-2 font-mono text-sm text-gold-ink md:col-span-1">{project.index}</span>
         <div className="col-span-10 md:col-span-7">
           <h3 className="font-display text-3xl leading-tight transition-transform duration-500 group-hover:translate-x-2 md:text-5xl">
             {project.name}
           </h3>
+          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-muted">
+            {company} · {role} · {duration}
+          </p>
+          {metrics.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {metrics.map((m) => (
+                <span
+                  key={m}
+                  className="rounded-full border border-gold-ink/30 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-gold-ink"
+                >
+                  {m}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
         <span className="col-span-8 col-start-3 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted md:col-span-3 md:col-start-auto">
           {project.tag}
         </span>
-        <span className="col-span-2 flex justify-end md:col-span-1">
-          <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.4 }} className="text-2xl text-emerald">
+        <span aria-hidden="true" className="col-span-2 flex justify-end md:col-span-1">
+          <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.4 }} className="text-2xl text-gold-ink">
             +
           </motion.span>
         </span>
@@ -80,55 +88,121 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
                 transition={{ duration: 0.5 }}
                 className="mb-10 md:pl-[8.33%]"
               >
-                <div className="overflow-hidden border border-ink-15 bg-graphite">
-                  {hasVideo ? (
-                    <video
-                      controls
-                      preload="none"
-                      playsInline
-                      className="aspect-video w-full bg-graphite object-contain"
-                    >
-                      <source src={video!} type="video/mp4" />
-                    </video>
-                  ) : (
-                    <div className="relative aspect-video w-full">
-                      <Image
-                        src={image!}
-                        alt={imageCaption ?? project.name}
-                        fill
-                        sizes="(min-width: 768px) 700px, 100vw"
-                        className="object-cover"
-                      />
+                {hasGallery ? (
+                  <Carousel label={`${project.name} gallery`} slideClassName="w-[85vw] max-w-[560px] md:w-[560px]">
+                    {gallery!.map((g, i) => (
+                      <div key={g.src} className="h-full overflow-hidden border border-ink-15 bg-graphite">
+                        <div className="relative aspect-video w-full">
+                          <Image
+                            src={g.src}
+                            alt={g.caption ?? project.name}
+                            fill
+                            sizes="(min-width: 768px) 560px, 85vw"
+                            className="object-cover"
+                            style={g.focus ? { objectPosition: g.focus } : undefined}
+                            loading={i === 0 ? "eager" : "lazy"}
+                          />
+                        </div>
+                        {g.caption && (
+                          <p className="border-t border-paper/15 px-4 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-paper/60">
+                            {g.caption}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </Carousel>
+                ) : (
+                  <>
+                    <div className="overflow-hidden border border-ink-15 bg-graphite">
+                      {hasVideo ? (
+                        <video
+                          controls
+                          preload="none"
+                          playsInline
+                          className="aspect-video w-full bg-graphite object-contain"
+                        >
+                          <source src={video!} type="video/mp4" />
+                        </video>
+                      ) : (
+                        <div className="relative aspect-video w-full">
+                          <Image
+                            src={image!}
+                            alt={imageCaption ?? project.name}
+                            fill
+                            sizes="(min-width: 768px) 700px, 100vw"
+                            className="object-cover"
+                          />
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-                {imageCaption && (
-                  <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-muted">
-                    {imageCaption}
-                  </p>
+                    {imageCaption && (
+                      <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-muted">
+                        {imageCaption}
+                      </p>
+                    )}
+                  </>
                 )}
               </motion.div>
             )}
 
             <div className="grid grid-cols-1 gap-x-10 gap-y-8 pb-14 md:grid-cols-2 md:pl-[8.33%]">
-              {STORY_FIELDS.map((f, i) => (
+              {[
+                {
+                  label: "The Problem",
+                  content: <p className="text-[15px] leading-relaxed text-graphite-soft">{project.problem}</p>,
+                },
+                {
+                  label: "Responsibilities",
+                  content: (
+                    <ul className="space-y-1.5">
+                      {project.responsibilities.map((r, i) => (
+                        <li key={i} className="flex gap-2 text-[15px] leading-relaxed text-graphite-soft">
+                          <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-graphite/40" />
+                          {r}
+                        </li>
+                      ))}
+                    </ul>
+                  ),
+                },
+                ...(tools && tools.length > 0
+                  ? [
+                      {
+                        label: "Tools Used",
+                        content: (
+                          <div className="flex flex-wrap gap-2">
+                            {tools.map((t) => (
+                              <span
+                                key={t}
+                                className="rounded-full border border-graphite/25 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-graphite-soft"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        ),
+                      },
+                    ]
+                  : []),
+                {
+                  label: "Business Impact",
+                  content: <p className="font-display text-xl text-gold-ink md:text-2xl">{project.outcome}</p>,
+                },
+                {
+                  label: "Lessons Learned",
+                  content: <p className="text-[15px] leading-relaxed text-graphite-soft">{project.takeaway}</p>,
+                },
+              ].map((f, i) => (
                 <motion.div
-                  key={f.key as string}
+                  key={f.label}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + i * 0.05, duration: 0.5 }}
                 >
                   <div className="mb-2 flex items-center gap-3">
-                    <span className="font-mono text-[10px] text-emerald">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-mono text-[10px] text-gold-ink">{String(i + 1).padStart(2, "0")}</span>
                     <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted">{f.label}</span>
                   </div>
-                  <p
-                    className={`text-[15px] leading-relaxed ${
-                      f.key === "outcome" ? "font-display text-xl text-emerald md:text-2xl" : "text-graphite-soft"
-                    }`}
-                  >
-                    {project[f.key] as string}
-                  </p>
+                  {f.content}
                 </motion.div>
               ))}
             </div>
@@ -144,9 +218,9 @@ export function Work() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="ch5" className="relative px-6 py-28 md:px-10 md:py-40">
-      <div className="mx-auto max-w-[1400px]">
-        <Reveal className="kicker mb-10 text-emerald">{kicker}</Reveal>
+    <section id="projects" className="relative px-6 py-28 md:px-10 md:py-40">
+      <div className="mx-auto max-w-[1400px] lg:pr-36">
+        <Reveal className="kicker mb-10 text-gold-ink">{kicker}</Reveal>
         <SplitText text={title} className="display-h1 mb-16 font-display" />
 
         <div className="border-t border-ink-15">
