@@ -19,12 +19,17 @@ type Project = {
   video?: string;
   tools?: string[];
   gallery?: readonly { src: string; caption?: string; focus?: string }[];
+  galleryGroups?: readonly {
+    label: string;
+    items: readonly { src?: string; video?: string; caption?: string; focus?: string }[];
+  }[];
 };
 
 function CaseStudy({ project, open, onToggle }: { project: Project; open: boolean; onToggle: () => void }) {
-  const { image, imageCaption, video, gallery, company, role, duration, metrics, tools } = project;
+  const { image, imageCaption, video, gallery, galleryGroups, company, role, duration, metrics, tools } = project;
   const hasVideo = Boolean(video);
-  const hasGallery = Boolean(gallery && gallery.length > 0);
+  const hasGalleryGroups = Boolean(galleryGroups && galleryGroups.length > 0);
+  const hasGallery = Boolean((gallery && gallery.length > 0) || hasGalleryGroups);
   const hasMedia = Boolean(image || video || hasGallery);
   const triggerId = `case-study-trigger-${project.index}`;
   const panelId = `case-study-panel-${project.index}`;
@@ -88,7 +93,53 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
                 transition={{ duration: 0.5 }}
                 className="mb-10 md:pl-[8.33%]"
               >
-                {hasGallery ? (
+                {hasGalleryGroups ? (
+                  <div className="space-y-10">
+                    {galleryGroups!.map((group) => (
+                      <div key={group.label}>
+                        <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted">
+                          {group.label}
+                        </p>
+                        <Carousel
+                          label={`${project.name} — ${group.label}`}
+                          slideClassName="w-[85vw] max-w-[560px] md:w-[560px]"
+                        >
+                          {group.items.map((g, i) => (
+                            <div key={g.src ?? g.video} className="h-full overflow-hidden border border-ink-15 bg-graphite">
+                              <div className="relative aspect-video w-full">
+                                {g.video ? (
+                                  <video
+                                    controls
+                                    preload="none"
+                                    playsInline
+                                    className="h-full w-full bg-graphite object-contain"
+                                  >
+                                    <source src={g.video} type="video/mp4" />
+                                  </video>
+                                ) : (
+                                  <Image
+                                    src={g.src!}
+                                    alt={g.caption ?? project.name}
+                                    fill
+                                    sizes="(min-width: 768px) 560px, 85vw"
+                                    className="object-cover"
+                                    style={g.focus ? { objectPosition: g.focus } : undefined}
+                                    loading={i === 0 ? "eager" : "lazy"}
+                                  />
+                                )}
+                              </div>
+                              {g.caption && (
+                                <p className="border-t border-paper/15 px-4 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-paper/60">
+                                  {g.caption}
+                                </p>
+                              )}
+                            </div>
+                          ))}
+                        </Carousel>
+                      </div>
+                    ))}
+                  </div>
+                ) : hasGallery ? (
                   <Carousel label={`${project.name} gallery`} slideClassName="w-[85vw] max-w-[560px] md:w-[560px]">
                     {gallery!.map((g, i) => (
                       <div key={g.src} className="h-full overflow-hidden border border-ink-15 bg-graphite">

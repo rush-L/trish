@@ -129,6 +129,7 @@ export const profile = {
         ],
         narrative:
           "Took ownership of the moving parts — coordinating activations against brand guidelines, monitoring field execution, and consolidating results into reports leadership could act on.",
+        image: "/images/work/unilever-exhibitor-event.png",
       },
       {
         year: "2024",
@@ -140,6 +141,7 @@ export const profile = {
         ],
         narrative:
           "First contact with the real machine — supporting operations and merchandising teams, and learning that a campaign is only as good as the operation standing behind it.",
+        image: "/images/journey/intern.png",
       },
       {
         year: "2020–2024",
@@ -215,11 +217,11 @@ export const profile = {
   // ==========================================================================
   work: {
     kicker: "Selected Work",
-    title: "Fewer projects. Deeper stories.",
+    title: "Work in Action. Results that Matter.",
     projects: [
       {
         index: "01",
-        name: "Field Operations Across Puregold & DT Stores",
+        name: "Leadership in the Field",
         tag: "Operations · Leadership",
         year: "2026",
         company: "ActivAsia Inc.",
@@ -238,31 +240,58 @@ export const profile = {
           "Sustains operations across 59 stores and a 116-person team, with field feedback now shaping promotional and merchandising decisions.",
         takeaway:
           "Scale doesn't come from adding oversight — it comes from a team that can make the right call without waiting for one. Next: formalize the coaching rhythm into a playbook other regions can adopt.",
-        gallery: [
-          { src: "/images/work/store-visit-1.jpg", caption: "Global visit of Smollan CEOs and Unilever team." },
-          { src: "/images/work/store-visit-2.jpg", caption: "Walking the floor with the field team." },
-          { src: "/images/work/store-visit-3.jpg", caption: "Checking shelf execution on the ground." },
-          { src: "/images/work/store-visit-4.jpg", caption: "On-site with Merchandisers at a Puregold store." },
-          { src: "/images/work/store-visit-5.jpg", caption: "Store visit — reviewing activation compliance." },
-          { src: "/images/work/store-visit-6.jpg", caption: "Field visit across the Greater Manila territory." },
-          { src: "/images/work/store-visit-7.jpg", caption: "On the floor with the Field Supervisor team." },
+        galleryGroups: [
           {
-            src: "/images/work/store-visit-8.jpg",
-            caption: "Store visit — coaching the team on the ground.",
-            focus: "center 25%",
+            label: "Store Visits",
+            items: [
+              { src: "/images/work/store-visit-1.jpg", caption: "Global visit of Smollan CEOs and Unilever team." },
+              { src: "/images/work/store-visit-2.jpg", caption: "Walking the floor with the field team." },
+              { src: "/images/work/store-visit-3.jpg", caption: "Checking shelf execution on the ground." },
+              { src: "/images/work/store-visit-4.jpg", caption: "On-site with Merchandisers at a Puregold store." },
+              { src: "/images/work/store-visit-5.jpg", caption: "Store visit — reviewing activation compliance." },
+              { src: "/images/work/store-visit-6.jpg", caption: "Field visit across the Greater Manila territory." },
+              { src: "/images/work/store-visit-7.jpg", caption: "On the floor with the Field Supervisor team." },
+              {
+                src: "/images/work/store-visit-8.jpg",
+                caption: "Store visit — coaching the team on the ground.",
+                focus: "center 25%",
+              },
+              { src: "/images/work/store-visit-9.jpg", caption: "Field operations, store-level execution check." },
+            ],
           },
-          { src: "/images/work/store-visit-9.jpg", caption: "Field operations, store-level execution check." },
-          { src: "/images/work/unilever-training-am-1.jpg", caption: "Unilever training curriculum, PRID3 University." },
           {
-            src: "/images/work/unilever-training-am-2.jpg",
-            caption: "Project Eddgie execution.",
-            focus: "center 25%",
+            label: "Team Meetings",
+            items: [
+              { src: "/images/work/team-meeting-7.jpg", caption: "Merchandising Training for SM, Puregold, and DT Merchandisers." },
+              { src: "/images/work/team-meeting-3.jpg", caption: "Presenting store coverage programs to the field team." },
+              { src: "/images/work/team-meeting-4.jpg", caption: "The team during a coverage programs briefing." },
+              { src: "/images/work/team-meeting-5.jpg", caption: "Presenting Unilever's business units to the field team." },
+            ],
+          },
+          {
+            label: "Trainings",
+            items: [
+              { src: "/images/work/unilever-training-am-4.jpg", caption: "Leadership and Excellence Session with Coach Reyes." },
+              { src: "/images/work/unilever-training-am-3.jpg", caption: "Introduction to Power BI training session." },
+              { src: "/images/work/unilever-training-am-1.jpg", caption: "Unilever training curriculum, PRID3 University." },
+              {
+                src: "/images/work/unilever-training-am-2.jpg",
+                caption: "Project Eddgie execution.",
+                focus: "center 25%",
+              },
+              { src: "/images/work/unilever-training-am-5.jpg", caption: "PRID3 University — Unilever Pride Day." },
+              { src: "/images/work/one-unilever-strategic-planning.png", caption: "One Unilever - Strategic Planning" },
+              {
+                src: "/images/work/power-up-communication-leadership.png",
+                caption: "Power Up with People: Communication & Leadership Management Training",
+              },
+            ],
           },
         ],
       },
       {
         index: "02",
-        name: "An Internal Tool Built for 1,000+ Users",
+        name: "Technology and Process Improvement",
         tag: "Innovation · Process Design",
         year: "2025",
         company: "ActivAsia Inc.",
@@ -281,60 +310,46 @@ export const profile = {
           "Adopted by more than 1,000 users, measurably improving attendance tracking and reporting efficiency company-wide.",
         takeaway:
           "Adoption is a design problem before it's a technology problem. Next: extend the same tooling discipline to other manual, high-friction processes.",
-        gallery: [
+        galleryGroups: [
           {
-            src: "/images/work/internal-tool.png",
-            caption: "Cascading the Refillers Attendance App to the wider team.",
+            label: "Applications",
+            items: [
+              {
+                video: "/images/work/acme-app-demo.mp4",
+                caption: "ACME App — walkthrough demo.",
+              },
+              {
+                src: "/images/work/perfect-store-app.png",
+                caption: "Perfect Store Application — One ULP Data Team.",
+              },
+              {
+                src: "/images/work/refillers-attendance-app.png",
+                caption: "One ULP Refillers Application.",
+              },
+              {
+                src: "/images/work/supervisors-attendance-app.png",
+                caption: "One ULP Supervisors Application V2.",
+              },
+            ],
           },
           {
-            src: "/images/work/refillers-attendance-cascade.jpg",
-            caption: "Refillers Attendance App cascade — full team call, 55 attendees.",
-          },
-          {
-            src: "/images/work/compliance-update-presentation.jpg",
-            caption: "Presenting the Applications Compliance Update in person.",
-          },
-          {
-            src: "/images/work/compliance-update-room.jpg",
-            caption: "The room during the Applications Compliance Update briefing.",
-          },
-          {
-            src: "/images/work/activasia-unilever-review-1.jpg",
-            caption: "ActivAsia × Unilever business review.",
-          },
-          {
-            src: "/images/work/activasia-unilever-review-2.jpg",
-            caption: "Business review, cross-functional alignment session.",
-          },
-          {
-            src: "/images/work/activasia-unilever-review-3.jpg",
-            caption: "ActivAsia × Unilever business review, full team.",
-          },
-          {
-            src: "/images/work/activasia-unilever-review-4.jpg",
-            caption: "Business review — planning session with stakeholders.",
-          },
-          {
-            src: "/images/work/one-unilever-core-team-1.jpg",
-            caption: "One Unilever Core Team.",
-          },
-          {
-            src: "/images/work/one-unilever-core-team-2.jpg",
-            caption: "One Unilever Core Team — celebrating a milestone.",
-          },
-          {
-            src: "/images/work/one-unilever-core-team-3.jpg",
-            caption: "One Unilever Core Team, on site.",
-          },
-          {
-            src: "/images/work/one-unilever-core-team-4.jpg",
-            caption: "One Unilever Core Team — team photo.",
+            label: "Cascades",
+            items: [
+              {
+                src: "/images/work/internal-tool.png",
+                caption: "Cascading the Refillers Attendance App to the wider team.",
+              },
+              {
+                src: "/images/work/refillers-attendance-cascade.jpg",
+                caption: "Refillers Attendance App cascade — full team call, 55 attendees.",
+              },
+            ],
           },
         ],
       },
       {
         index: "03",
-        name: "Merchandising Activation & Field Reporting",
+        name: "Performance and Business Reviews",
         tag: "Marketing · Execution",
         year: "2024",
         company: "ActivAsia Inc.",
@@ -352,8 +367,46 @@ export const profile = {
           "Consistent, on-brand execution across activations, with reporting that showed leadership field reality — not just plans.",
         takeaway:
           "A report is only useful if it reflects what actually happened on the ground. Next: build a standing feedback loop from field data straight back into campaign planning.",
-        video: "/images/work/acme-app-demo.mp4",
-        imageCaption: "A walkthrough of the ACME activation reporting app.",
+        galleryGroups: [
+          {
+            label: "Compliance Update",
+            items: [
+              {
+                src: "/images/work/compliance-update-presentation.jpg",
+                caption: "Presenting the Applications Compliance Update in person.",
+              },
+              {
+                src: "/images/work/compliance-update-room.jpg",
+                caption: "The room during the Applications Compliance Update briefing.",
+              },
+            ],
+          },
+          {
+            label: "Business Review",
+            items: [
+              {
+                src: "/images/work/activasia-unilever-review-3.jpg",
+                caption: "Presenting Quarterly Store Coverage Update.",
+              },
+              {
+                src: "/images/work/attendance-apps-update-presentation.jpg",
+                caption: "Presenting the Attendance Apps Update at the business review.",
+              },
+              {
+                src: "/images/work/activasia-unilever-review-1.jpg",
+                caption: "ActivAsia × Unilever business review.",
+              },
+              {
+                src: "/images/work/activasia-unilever-review-2.jpg",
+                caption: "Business review, cross-functional alignment session.",
+              },
+              {
+                src: "/images/work/mission-one-q2-2025-br-team.jpg",
+                caption: "Mission One Q2 2025 Business Review — full team.",
+              },
+            ],
+          },
+        ],
       },
     ],
   },
