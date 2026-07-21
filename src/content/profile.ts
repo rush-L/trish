@@ -297,7 +297,7 @@ export const profile = {
         company: "ActivAsia Inc.",
         role: "Innovation Associate",
         duration: "2025",
-        metrics: ["1,000+ users"],
+        metrics: ["1,000+ users", "4 applications led"],
         problem:
           "Attendance tracking and reporting relied on manual, inconsistent processes that didn't scale with headcount — and any new system had to roll out without disrupting a team already relying on the old one.",
         responsibilities: [
@@ -351,10 +351,10 @@ export const profile = {
         index: "03",
         name: "Performance and Business Reviews",
         tag: "Marketing · Execution",
-        year: "2024",
+        year: "2024–2025",
         company: "ActivAsia Inc.",
-        role: "Activation Merchandising Coordinator",
-        duration: "2024",
+        role: "Activation Merchandising Coordinator & Innovation Associate",
+        duration: "2024–2025",
         metrics: [] as string[],
         problem:
           "Merchandising activations needed to stay true to brand guidelines and campaign objectives across multiple field teams — while scattered field results needed consolidating into something leadership could actually act on.",
