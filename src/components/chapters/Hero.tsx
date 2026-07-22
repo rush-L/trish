@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { ExternalLink, Mail, Phone } from "lucide-react";
 import { useRef } from "react";
 import { profile } from "@/content/profile";
 import { Magnetic } from "@/components/ui/Magnetic";
@@ -37,26 +36,28 @@ export function Hero() {
       {/* Gold aura */}
       <div className="pointer-events-none absolute right-[-10%] top-[10%] h-[45vw] w-[45vw] rounded-full bg-gold/15 blur-[120px]" />
 
-      {/* Portrait — large, edge-to-edge, desktop only */}
+      {/* Decorative diagonal accent, desktop only */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[18%] top-0 z-0 hidden h-full w-px origin-top rotate-[9deg] bg-gradient-to-b from-transparent via-gold/40 to-transparent lg:block"
+      />
+
+      {/* Portrait — cutout, bottom-anchored, desktop only */}
       <motion.div
         style={{ y, opacity }}
         initial={{ opacity: 0, x: 24 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.1, ease: EASE_OUT_EXPO, delay: 0.4 }}
-        className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[38vw] max-w-[560px] lg:block"
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[34vw] max-w-[520px] lg:block"
       >
-        <div className="relative h-full w-full overflow-hidden">
-          <Image
-            src={profile.media.portrait}
-            alt={profile.fullName}
-            fill
-            priority
-            sizes="38vw"
-            className="object-cover"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-obsidian via-transparent to-transparent" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian/40 via-transparent to-transparent" />
-        </div>
+        <Image
+          src="/images/profile/portrait-hero-cutout.webp"
+          alt={profile.fullName}
+          fill
+          priority
+          unoptimized
+          className="object-contain object-bottom"
+        />
       </motion.div>
 
       {/* Top meta row */}
@@ -72,6 +73,7 @@ export function Hero() {
           <div className="relative h-9 w-9 flex-none overflow-hidden rounded-full border border-paper/20 lg:hidden">
             <Image src={profile.media.portrait} alt={profile.fullName} fill sizes="36px" className="object-cover" />
           </div>
+          <span aria-hidden="true" className="hidden h-px w-6 bg-gold md:block" />
           <span className="kicker text-paper/60">{profile.title}</span>
         </div>
         <span className="kicker hidden text-paper/60 md:block">{profile.location}</span>
@@ -134,6 +136,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 rounded-full border border-paper/25 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-obsidian"
             >
               View Resume
+              <span aria-hidden="true">↓</span>
             </a>
           </Magnetic>
         </motion.div>
@@ -142,25 +145,26 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.35 }}
-          className="mt-6 flex items-center gap-5"
+          className="mt-10 flex items-center gap-4"
         >
-          {profile.socials.map((s) => {
-            const Icon = s.label === "LinkedIn" ? ExternalLink : s.label === "Email" ? Mail : Phone;
-            return (
-              <Magnetic key={s.label} strength={0.3}>
-                <a
-                  href={s.href}
-                  target={s.label === "LinkedIn" ? "_blank" : undefined}
-                  rel={s.label === "LinkedIn" ? "noopener noreferrer" : undefined}
-                  data-cursor={s.label}
-                  aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-paper/25 text-paper/70 transition-colors hover:border-paper hover:text-paper"
-                >
-                  <Icon aria-hidden="true" size={15} strokeWidth={1.5} />
-                </a>
-              </Magnetic>
-            );
-          })}
+          <span aria-hidden="true" className="h-8 w-px bg-paper/25" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-gold">Scroll to Discover</span>
+          <Magnetic strength={0.3}>
+            <a
+              href="#achievements"
+              data-cursor="Scroll"
+              aria-label="Scroll to discover"
+              className="group flex h-9 w-9 items-center justify-center rounded-full border border-paper/25 text-paper transition-colors hover:border-paper"
+            >
+              <motion.span
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                aria-hidden="true"
+              >
+                ↓
+              </motion.span>
+            </a>
+          </Magnetic>
         </motion.div>
       </motion.div>
     </section>
