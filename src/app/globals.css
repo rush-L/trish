@@ -13,6 +13,7 @@
   --color-navy: #0b1f3a;         /* deep navy */
   --color-navy-soft: #14304f;
   --color-gold: #c6a15b;         /* signature accent — dark grounds (7.97:1 on obsidian) */
+  --color-gold-highlight: #e5c982; /* brighter gold — gradient endpoint for hero emphasis */
   --color-gold-ink: #8a6416;     /* signature accent — light ground (4.8:1 on paper, AA) */
   --color-cyan: #7fd1d6;         /* soft cyan */
   --color-ink-muted: rgba(26, 28, 30, 0.62); /* ~4.6:1 on paper, passes WCAG AA */
@@ -112,7 +113,7 @@ html.lenis body {
 .display-mega {
   font-family: var(--font-display);
   font-size: var(--text-mega);
-  line-height: 0.9;
+  line-height: 0.97;
   letter-spacing: -0.03em;
   font-weight: 400;
 }

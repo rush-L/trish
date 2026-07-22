@@ -80,7 +80,10 @@ export function Nav() {
   return (
     <>
       {/* Top bar */}
-      <header
+      <motion.header
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
           solid || menuOpen ? "glass-dark border-b border-paper/10" : ""
         }`}
@@ -104,19 +107,19 @@ export function Nav() {
                 href={profile.resumeUrl}
                 download
                 data-cursor="Download"
-                className="hidden items-center gap-2 rounded-full border border-paper/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-obsidian sm:inline-flex"
+                className="hidden items-center gap-2 rounded-full border border-paper/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-all duration-300 hover:-translate-y-0.5 hover:border-paper hover:bg-paper hover:text-obsidian sm:inline-flex"
               >
-                Résumé
+                Download Résumé
               </a>
             </Magnetic>
             <Magnetic strength={0.4}>
               <a
                 href="#contact"
                 data-cursor="Say hi"
-                className="group inline-flex items-center gap-2 rounded-full border border-paper/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-obsidian"
+                className="group inline-flex items-center gap-2 rounded-full border border-paper/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-all duration-300 hover:-translate-y-0.5 hover:border-paper hover:bg-paper hover:text-obsidian"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gold transition-colors group-hover:bg-cyan" />
-                Available
+                Available for Work
               </a>
             </Magnetic>
 
@@ -149,7 +152,7 @@ export function Nav() {
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile/tablet chapter menu */}
       <AnimatePresence>
