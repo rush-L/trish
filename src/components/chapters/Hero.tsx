@@ -70,7 +70,7 @@ export function Hero() {
             className="relative h-full w-full"
           >
             <Image
-              src="/images/profile/portrait-hero-cutout.webp?v=4"
+              src="/images/profile/portrait-hero-cutout.webp?v=5"
               alt={profile.fullName}
               fill
               priority
@@ -90,7 +90,7 @@ export function Hero() {
         className="relative z-10 mx-auto mb-6 aspect-[624/873] w-[52vw] max-w-[240px] lg:hidden"
       >
         <Image
-          src="/images/profile/portrait-hero-cutout.webp?v=4"
+          src="/images/profile/portrait-hero-cutout.webp?v=5"
           alt={profile.fullName}
           fill
           priority
