@@ -266,7 +266,18 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
 
 export function Work() {
   const { kicker, title, projects } = profile.work;
-  const [open, setOpen] = useState<number | null>(0);
+  // Independently toggled (not a single-open accordion) — closing a panel
+  // above the viewport used to yank the whole page up under Lenis's
+  // frame-pinned scroll, burying whatever the user had just opened.
+  const [open, setOpen] = useState<Set<number>>(() => new Set([0]));
+
+  const toggle = (i: number) =>
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
 
   return (
     <section id="projects" className="relative px-6 py-28 md:px-10 md:py-40">
@@ -276,7 +287,7 @@ export function Work() {
 
         <div className="border-t border-ink-15">
           {projects.map((p, i) => (
-            <CaseStudy key={i} project={p} open={open === i} onToggle={() => setOpen(open === i ? null : i)} />
+            <CaseStudy key={i} project={p} open={open.has(i)} onToggle={() => toggle(i)} />
           ))}
         </div>
       </div>
