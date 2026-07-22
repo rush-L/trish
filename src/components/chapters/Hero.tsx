@@ -32,7 +32,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.8, ease: EASE_OUT_EXPO, delay: 1.6 }}
-        className="pointer-events-none absolute -bottom-[6vw] left-[-4vw] select-none font-display text-[34vw] leading-none tracking-tight text-paper/[0.08] lg:inset-y-0 lg:bottom-auto lg:left-auto lg:right-[16vw] lg:top-1/2 lg:flex lg:-translate-y-1/2 lg:flex-col lg:items-center lg:text-[17vw] lg:leading-[0.82] lg:text-paper/[0.13]"
+        className="pointer-events-none absolute -bottom-[6vw] left-[-4vw] select-none font-display text-[34vw] leading-none tracking-tight text-paper/[0.08] lg:inset-y-0 lg:bottom-auto lg:left-auto lg:right-[27vw] lg:top-1/2 lg:flex lg:-translate-y-1/2 lg:flex-col lg:items-center lg:text-[17vw] lg:leading-[0.82] lg:text-paper/[0.13]"
       >
         <span>R</span>
         <span className="lg:block">M</span>
@@ -55,7 +55,7 @@ export function Hero() {
       {/* Gold wedge — bottom-right corner accent from the goal mockup */}
       <div
         aria-hidden
-        className="pointer-events-none absolute bottom-0 right-0 z-0 hidden h-[46vh] w-[24vw] bg-gradient-to-tl from-gold/70 via-gold/25 to-transparent [clip-path:polygon(100%_18%,100%_100%,0_100%)] lg:block"
+        className="pointer-events-none absolute bottom-0 right-0 z-0 hidden h-[64vh] w-[24vw] bg-gradient-to-tl from-gold/70 via-gold/25 to-transparent [clip-path:polygon(100%_18%,100%_100%,0_100%)] lg:block"
       />
       <div
         aria-hidden
