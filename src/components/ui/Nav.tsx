@@ -44,8 +44,9 @@ export function Nav() {
       },
       { rootMargin: "-45% 0px -50% 0px" }
     );
-    [...CHAPTERS, { id: "about", label: "About" }].forEach((c) => {
-      const el = document.getElementById(c.id);
+    const ids = [...new Set([...CHAPTERS, ...NAV_LINKS].map((c) => c.id))];
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
       if (el) io.observe(el);
     });
     const onScroll = () => setSolid(window.scrollY > 40);
