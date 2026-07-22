@@ -118,7 +118,6 @@ export function Hero() {
             </span>
           </div>
         </div>
-        <span className="kicker hidden text-paper/60 md:block">{profile.location}</span>
       </motion.div>
 
       {/* Headline */}
@@ -131,7 +130,7 @@ export function Hero() {
           variants={stagger(0.35, 0.09)}
           initial="hidden"
           animate="show"
-          className="display-mega max-w-[12ch]"
+          className="font-display text-[clamp(3rem,6.5vw,6rem)] font-normal leading-[1.02] tracking-[-0.03em] max-w-[14ch]"
         >
           {profile.heroLine.map((w, i) => (
             <span key={i} className="inline-block overflow-hidden pr-[0.18em] align-top">
@@ -148,12 +147,19 @@ export function Hero() {
             </span>
           ))}
         </motion.h1>
+        <motion.span
+          aria-hidden="true"
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: 1.0 }}
+          className="mt-8 block h-px w-10 origin-left bg-gold"
+        />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.1 }}
-          className="measure mt-10 text-lg leading-[1.7] text-paper/70 md:text-xl"
+          className="mt-8 max-w-[28rem] text-base leading-[1.7] text-paper/70 md:text-lg"
         >
           {profile.heroSub}
         </motion.p>
@@ -162,7 +168,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.25 }}
-          className="mt-12 flex flex-wrap items-center gap-6"
+          className="mt-10 flex flex-wrap items-center gap-6"
         >
           <Magnetic strength={0.4}>
             <a
@@ -191,7 +197,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.35 }}
-          className="mt-14 flex items-center gap-4"
+          className="mt-12 flex items-center gap-4"
         >
           <span aria-hidden="true" className="h-6 w-px bg-paper/25" />
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-paper/50">Scroll to Discover</span>
