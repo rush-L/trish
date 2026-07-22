@@ -98,7 +98,7 @@ export function Nav() {
           solid || menuOpen ? "glass-dark border-b border-paper/10" : ""
         }`}
       >
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 md:px-10">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 md:px-10 lg:px-16 lg:py-5">
           <a
             href="#top"
             data-cursor="Top"

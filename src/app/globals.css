@@ -21,8 +21,8 @@
   --color-ink-08: rgba(26, 28, 30, 0.08);
 
   /* --- Dark ground (used in immersive chapters) --- */
-  --color-obsidian: #0a0e14;
-  --color-obsidian-soft: #101620;
+  --color-obsidian: #131313;      /* neutral charcoal, matches goal mockup (was blue-tinted) */
+  --color-obsidian-soft: #1b1b1b;
 
   /* --- Fonts (bound to next/font variables) --- */
   --font-display: var(--font-display), Georgia, serif;

@@ -21,7 +21,7 @@ export function Hero() {
     <section
       id="top"
       ref={ref}
-      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden px-6 pb-10 pt-28 md:px-10"
+      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden px-6 pb-10 pt-28 md:px-10 lg:px-16"
     >
       {/* Oversized ghost word — drifts bottom-left on mobile (no portrait to
           sit behind there), sits behind the portrait on the right at lg+.
@@ -111,38 +111,35 @@ export function Hero() {
         />
       </motion.div>
 
-      {/* Top meta row */}
-      <motion.div
-        style={{ opacity }}
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 0.2 }}
-        className="relative z-10 flex items-center justify-between lg:pr-[49vw] xl:pr-[680px]"
-      >
-        <div className="flex items-center gap-3">
-          <span aria-hidden="true" className="h-px w-6 bg-gold" />
-          <div className="flex flex-col gap-0.5">
-            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.28em] text-paper">
-              {profile.title.split(" · ")[0]}
-            </span>
-            <span className="font-mono text-[11px] tracking-[0.15em] text-paper/50">
-              {profile.title.split(" · ")[1]}
-            </span>
-          </div>
-        </div>
-      </motion.div>
-
       {/* Headline */}
       <motion.div
         style={{ y, opacity }}
         suppressHydrationWarning
         className="relative z-10 my-auto lg:pr-[49vw] xl:pr-[680px]"
       >
+        {/* Kicker — part of the centered block, sitting just above the headline */}
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 0.2 }}
+          className="mb-12 flex items-center gap-3"
+        >
+          <span aria-hidden="true" className="h-px w-6 bg-gold" />
+          <div className="flex flex-col gap-0.5">
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.28em] text-gold">
+              {profile.title.split(" · ")[0]}
+            </span>
+            <span className="font-mono text-[11px] tracking-[0.15em] text-paper/50">
+              {profile.title.split(" · ")[1]}
+            </span>
+          </div>
+        </motion.div>
+
         <motion.h1
           variants={stagger(0.35, 0.09)}
           initial="hidden"
           animate="show"
-          className="font-display text-[clamp(3rem,6.5vw,6rem)] font-normal leading-[1.02] tracking-[-0.03em] max-w-[14ch]"
+          className="font-display text-[clamp(2.8rem,5.8vw,5.25rem)] font-normal leading-[1.02] tracking-[-0.03em] max-w-[14ch]"
         >
           {profile.heroLine.map((w, i) => (
             <span key={i} className="inline-block overflow-hidden pr-[0.18em] align-top">
