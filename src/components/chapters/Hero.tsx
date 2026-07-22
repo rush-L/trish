@@ -37,8 +37,12 @@ export function Hero() {
         RMP
       </motion.span>
 
-      {/* Gold aura — soft spotlight behind the portrait, kept extremely subtle */}
-      <div className="pointer-events-none absolute right-[-5%] top-[12%] h-[42vw] w-[42vw] rounded-full bg-gold/8 blur-[140px] lg:block" />
+      {/* Gold aura — soft spotlight behind the portrait, kept extremely subtle.
+          Kept fully inboard of the viewport: this used to bleed off the right
+          edge, so the section's overflow-hidden was clipping through its solid
+          interior (not just the blur's faded tail), leaving a visible hard seam
+          in the background. */}
+      <div className="pointer-events-none absolute right-[10%] top-[14%] hidden h-[34vw] w-[34vw] rounded-full bg-gold/8 blur-[140px] lg:block" />
 
       {/* Decorative diagonal accent, desktop only — structural divider, not a focal element */}
       <div
