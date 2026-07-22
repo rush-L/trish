@@ -19,7 +19,7 @@ export function Skills() {
   return (
     <section id="skills" className="relative px-6 py-28 md:px-10 md:py-40">
       <div className="mx-auto max-w-[1400px] lg:pr-36">
-        <Reveal className="kicker mb-10 text-gold-ink">{kicker}</Reveal>
+        <Reveal className="kicker mb-10 text-gold">{kicker}</Reveal>
         <SplitText text={title} className="display-h1 mb-16 font-display" />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -29,21 +29,21 @@ export function Skills() {
               <Reveal
                 key={c.label}
                 delay={0.06 * i}
-                className="group relative rounded-2xl border border-ink-15 bg-paper p-8 transition-all duration-500 hover:border-gold-ink/40 hover:bg-paper-dim"
+                className="group relative rounded-2xl border border-paper/10 bg-paper/[0.03] p-8 transition-all duration-500 hover:border-gold/40 hover:bg-paper/[0.06]"
               >
                 <div className="flex items-start justify-between">
-                  <span className="font-mono text-xs text-gold-ink">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-xs text-gold">{String(i + 1).padStart(2, "0")}</span>
                   {Icon && (
                     <Icon
                       aria-hidden="true"
                       size={22}
                       strokeWidth={1.25}
-                      className="text-gold-ink/40 transition-colors duration-500 group-hover:text-gold-ink"
+                      className="text-gold/40 transition-colors duration-500 group-hover:text-gold"
                     />
                   )}
                 </div>
 
-                <span className="mt-6 block kicker text-ink-muted">{c.label}</span>
+                <span className="mt-6 block kicker text-paper/60">{c.label}</span>
                 {"proof" in c && c.proof && (
                   <p className="mt-3 font-display text-xl leading-snug">{c.proof}</p>
                 )}
@@ -52,7 +52,7 @@ export function Skills() {
                   {c.items.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-graphite/25 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-graphite-soft"
+                      className="rounded-full border border-paper/25 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-paper/70"
                     >
                       {item}
                     </span>
