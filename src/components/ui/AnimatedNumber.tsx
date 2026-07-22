@@ -14,7 +14,7 @@ export function AnimatedNumber({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-20% 0px" });
+  const inView = useInView(ref, { once: false, margin: "-20% 0px" });
   const numeric = typeof value === "number" ? value : Number(value);
   const isNumeric = !Number.isNaN(numeric);
 
