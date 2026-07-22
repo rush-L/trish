@@ -170,7 +170,7 @@ export const profile = {
     kpis: [
       { value: "59", suffix: "", label: "stores managed", sub: "Puregold, Greater Manila Area" },
       { value: "116", suffix: "", label: "team members led", sub: "3 Field Supervisors + 113 Merchandisers" },
-      { value: "1000", suffix: "+", label: "tool users", sub: "Internal attendance & reporting system" },
+      { value: "999", suffix: "+", label: "tool users", sub: "Internal attendance & reporting system" },
       { value: "4", suffix: "", label: "roles in 2 years", sub: "Intern → Area Manager, ActivAsia Inc." },
       { value: "Magna", suffix: " Cum Laude", label: "academic distinction", sub: "President's Lister, 2020–2024" },
     ],
