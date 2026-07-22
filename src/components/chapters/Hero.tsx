@@ -174,7 +174,7 @@ export function Hero() {
             <a
               href="#projects"
               data-cursor="View"
-              className="group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-obsidian transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-gold-highlight hover:shadow-[0_12px_28px_-10px_rgba(198,161,91,0.55)]"
+              className="group inline-flex items-center gap-2 bg-gold px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-obsidian transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-gold-highlight hover:shadow-[0_12px_28px_-10px_rgba(198,161,91,0.55)]"
             >
               View My Work
               <span aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1">→</span>
@@ -185,9 +185,9 @@ export function Hero() {
               href={profile.resumeUrl}
               download
               data-cursor="Download"
-              className="inline-flex items-center gap-2 rounded-full border border-paper/25 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-gold hover:text-gold"
+              className="inline-flex items-center gap-2 border border-gold/50 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-gold hover:text-gold"
             >
-              View Resume
+              View Résumé
               <span aria-hidden="true">↓</span>
             </a>
           </Magnetic>
