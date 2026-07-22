@@ -14,7 +14,7 @@ export function SplitText({
   text,
   className = "",
   delay = 0,
-  once = true,
+  once = false,
   as = "h2",
 }: {
   text: string | string[];

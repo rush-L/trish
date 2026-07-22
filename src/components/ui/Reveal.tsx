@@ -23,7 +23,7 @@ export function Reveal({
       variants={rise}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, margin: "-12% 0px -12% 0px" }}
+      viewport={{ once: false, margin: "-12% 0px -12% 0px" }}
       transition={{ delay }}
     >
       {children}
