@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { animate, useInView, useMotionValue } from "framer-motion";
 
 /** Counts up to `value` when scrolled into view. Non-numeric values render as-is. */
 export function AnimatedNumber({
@@ -19,16 +19,19 @@ export function AnimatedNumber({
   const isNumeric = !Number.isNaN(numeric);
 
   const mv = useMotionValue(0);
-  const spring = useSpring(mv, { stiffness: 60, damping: 18, mass: 1 });
 
   useEffect(() => {
     if (!isNumeric || !inView) return;
-    mv.set(numeric);
-    const unsub = spring.on("change", (v) => {
+    mv.set(0);
+    const controls = animate(mv, numeric, { type: "spring", stiffness: 60, damping: 18, mass: 1 });
+    const unsub = mv.on("change", (v) => {
       if (ref.current) ref.current.textContent = `${Math.round(v)}${suffix}`;
     });
-    return unsub;
-  }, [inView, isNumeric, numeric, suffix, mv, spring]);
+    return () => {
+      controls.stop();
+      unsub();
+    };
+  }, [inView, isNumeric, numeric, suffix, mv]);
 
   if (!isNumeric) {
     return (
