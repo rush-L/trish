@@ -44,8 +44,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5f2ec",
-  colorScheme: "light",
+  themeColor: "#0a0e14",
+  colorScheme: "dark",
 };
 
 const personJsonLd = {
@@ -71,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable}`}
     >
-      <body className="grain antialiased">
+      <body data-theme="dark" className="grain antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
