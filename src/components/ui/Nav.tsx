@@ -17,10 +17,6 @@ const CHAPTERS = [
   { id: "contact", label: "Contact" },
 ];
 
-// Chapters rendered on a dark ground (obsidian/navy) — the side rail's resting
-// label color needs to flip here, or it reads as near-invisible dark-on-dark.
-const DARK_CHAPTERS = new Set(["experience", "achievements", "contact"]);
-
 export function Nav() {
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
@@ -86,7 +82,7 @@ export function Nav() {
       {/* Top bar */}
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-          solid || menuOpen ? "glass border-b border-ink-15" : ""
+          solid || menuOpen ? "glass-dark border-b border-paper/10" : ""
         }`}
       >
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 md:px-10">
@@ -96,8 +92,8 @@ export function Nav() {
             className="font-display text-lg tracking-tight"
           >
             {profile.firstName}
-            <span className="text-gold-ink">.</span>
-            <span className="ml-2 align-super font-mono text-[10px] tracking-[0.25em] text-ink-muted">
+            <span className="text-gold">.</span>
+            <span className="ml-2 align-super font-mono text-[10px] tracking-[0.25em] text-paper/60">
               {profile.credential}
             </span>
           </a>
@@ -108,7 +104,7 @@ export function Nav() {
                 href={profile.resumeUrl}
                 download
                 data-cursor="Download"
-                className="hidden items-center gap-2 rounded-full border border-graphite/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors hover:bg-graphite hover:text-paper sm:inline-flex"
+                className="hidden items-center gap-2 rounded-full border border-paper/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-obsidian sm:inline-flex"
               >
                 Résumé
               </a>
@@ -117,9 +113,9 @@ export function Nav() {
               <a
                 href="#contact"
                 data-cursor="Say hi"
-                className="group inline-flex items-center gap-2 rounded-full border border-graphite/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors hover:bg-graphite hover:text-paper"
+                className="group inline-flex items-center gap-2 rounded-full border border-paper/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-obsidian"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-gold-ink transition-colors group-hover:bg-cyan" />
+                <span className="h-1.5 w-1.5 rounded-full bg-gold transition-colors group-hover:bg-cyan" />
                 Available
               </a>
             </Magnetic>
@@ -138,17 +134,17 @@ export function Nav() {
               <motion.span
                 animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6.5 : 0 }}
                 transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
-                className="block h-px w-6 bg-graphite"
+                className="block h-px w-6 bg-paper"
               />
               <motion.span
                 animate={{ opacity: menuOpen ? 0 : 1 }}
                 transition={{ duration: 0.2 }}
-                className="block h-px w-6 bg-graphite"
+                className="block h-px w-6 bg-paper"
               />
               <motion.span
                 animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6.5 : 0 }}
                 transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
-                className="block h-px w-6 bg-graphite"
+                className="block h-px w-6 bg-paper"
               />
             </button>
           </div>
@@ -225,47 +221,32 @@ export function Nav() {
           active === "top" ? "pointer-events-none opacity-0" : "opacity-100"
         }`}
       >
-        {CHAPTERS.map((c) => {
-          const onDark = DARK_CHAPTERS.has(active);
-          return (
-            <a
-              key={c.id}
-              href={`#${c.id}`}
-              className="group flex items-center gap-2"
-              data-cursor={c.label}
+        {CHAPTERS.map((c) => (
+          <a
+            key={c.id}
+            href={`#${c.id}`}
+            className="group flex items-center gap-2"
+            data-cursor={c.label}
+          >
+            <span
+              className={`font-mono text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 ${
+                active === c.id ? "text-paper" : "text-paper/40 group-hover:text-paper"
+              }`}
             >
-              <span
-                className={`font-mono text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 ${
-                  active === c.id
-                    ? onDark
-                      ? "text-paper"
-                      : "text-graphite"
-                    : onDark
-                      ? "text-paper/40 group-hover:text-paper"
-                      : "text-ink-muted group-hover:text-graphite"
-                }`}
-              >
-                {c.label}
-              </span>
-              <span
-                className={`h-px transition-all duration-300 ${
-                  active === c.id
-                    ? onDark
-                      ? "w-8 bg-gold"
-                      : "w-8 bg-gold-ink"
-                    : onDark
-                      ? "w-4 bg-paper/30 group-hover:w-6"
-                      : "w-4 bg-ink-muted group-hover:w-6"
-                }`}
-              />
-            </a>
-          );
-        })}
+              {c.label}
+            </span>
+            <span
+              className={`h-px transition-all duration-300 ${
+                active === c.id ? "w-8 bg-gold" : "w-4 bg-paper/30 group-hover:w-6"
+              }`}
+            />
+          </a>
+        ))}
       </nav>
 
       {/* Scroll progress bar */}
       <motion.div
-        className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left bg-gold-ink"
+        className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left bg-gold"
         style={{ scaleX: progress }}
       />
     </>
