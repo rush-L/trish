@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { fraunces, inter, jetbrains } from "@/lib/fonts";
+import { fraunces, inter, jetbrains, playfair } from "@/lib/fonts";
 import { profile } from "@/content/profile";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import Cursor from "@/components/ui/Cursor";
@@ -69,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable} ${playfair.variable}`}
     >
       <body data-theme="dark" className="grain antialiased">
         <script

@@ -1,4 +1,4 @@
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
 
 // Editorial display serif — headlines, chapter titles, pull quotes.
 export const fraunces = Fraunces({
@@ -7,6 +7,14 @@ export const fraunces = Fraunces({
   variable: "--font-display",
   style: ["normal", "italic"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+// High-contrast serif — ghost RMP monogram only.
+export const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-ghost",
+  weight: ["400"],
 });
 
 // Neutral grotesque — UI, body, labels.

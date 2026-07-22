@@ -32,24 +32,24 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.8, ease: EASE_OUT_EXPO, delay: 1.6 }}
-        className="pointer-events-none absolute -bottom-[6vw] left-[-4vw] select-none font-display text-[34vw] leading-none tracking-tight text-paper/[0.08] lg:inset-y-0 lg:bottom-auto lg:left-auto lg:right-[27vw] lg:top-1/2 lg:flex lg:-translate-y-1/2 lg:flex-col lg:items-center lg:text-[17vw] lg:leading-[0.82] lg:text-paper/[0.13]"
+        className="pointer-events-none absolute -bottom-[6vw] left-[-10vw] select-none font-ghost text-[34vw] leading-none tracking-tight text-paper/[0.05] lg:inset-y-0 lg:bottom-auto lg:left-auto lg:right-[41vw] lg:top-1/2 lg:flex lg:-translate-y-1/2 lg:flex-col lg:items-start lg:text-[17vw] lg:leading-[0.82] lg:text-paper/[0.05]"
       >
-        <span>R</span>
-        <span className="lg:block">M</span>
-        <span className="lg:block">P</span>
+        <span className="inline-block lg:block">R</span>
+        <span className="inline-block translate-y-[2vw] lg:block lg:translate-y-0">M</span>
+        <span className="inline-block translate-y-[4vw] lg:block lg:translate-y-0">P</span>
       </motion.span>
 
-      {/* Gold aura — soft spotlight behind the portrait, kept extremely subtle.
-          Kept fully inboard of the viewport: this used to bleed off the right
-          edge, so the section's overflow-hidden was clipping through its solid
-          interior (not just the blur's faded tail), leaving a visible hard seam
-          in the background. */}
-      <div className="pointer-events-none absolute right-[10%] top-[14%] hidden h-[34vw] w-[34vw] rounded-full bg-gold/8 blur-[140px] lg:block" />
-
-      {/* Decorative diagonal accent, desktop only — structural divider, not a focal element */}
+      {/* Warm spotlight behind the portrait — full-bleed radial so it fades out
+          inside the viewport instead of getting clipped at the edge. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute right-[45vw] top-0 z-0 hidden h-full w-px origin-top rotate-[6deg] bg-gradient-to-b from-transparent via-gold/12 to-transparent lg:block"
+        className="pointer-events-none absolute inset-0 hidden bg-[radial-gradient(circle_at_75%_40%,rgba(201,164,91,0.18),transparent_60%)] lg:block"
+      />
+
+      {/* Soft vignette — darkens the edges so the composition holds the center */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[5] bg-[radial-gradient(ellipse_120%_100%_at_50%_45%,transparent_60%,rgba(0,0,0,0.35)_100%)]"
       />
 
       {/* Gold wedge — bottom-right corner accent from the goal mockup */}
@@ -68,7 +68,7 @@ export function Hero() {
           instead of one overwriting the other. */}
       <motion.div
         style={{ y, opacity }}
-        className="pointer-events-none absolute inset-y-0 right-[3vw] z-10 hidden w-[44vw] max-w-[600px] lg:block"
+        className="pointer-events-none absolute -bottom-[24vh] top-0 right-[calc(6vw+24px)] z-10 hidden w-[53vw] max-w-[750px] lg:block"
       >
         <motion.div
           initial={{ opacity: 0, y: 28 }}
@@ -87,7 +87,7 @@ export function Hero() {
               fill
               priority
               unoptimized
-              className="object-contain object-bottom"
+              className="object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.35)]"
             />
           </motion.div>
         </motion.div>
@@ -107,7 +107,7 @@ export function Hero() {
           fill
           priority
           unoptimized
-          className="object-contain object-bottom"
+          className="object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.35)]"
         />
       </motion.div>
 
@@ -115,24 +115,24 @@ export function Hero() {
       <motion.div
         style={{ y, opacity }}
         suppressHydrationWarning
-        className="relative z-10 my-auto lg:pr-[49vw] xl:pr-[680px]"
+        className="relative z-10 my-auto md:ml-[calc(-4rem+max(0px,(100vw-1600px)/2))] lg:pr-[52vw] xl:pr-[720px]"
       >
         {/* Kicker — part of the centered block, sitting just above the headline */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 0.2 }}
-          className="mb-12 flex items-center gap-3"
+          className="mb-16 flex flex-col gap-1.5"
         >
-          <span aria-hidden="true" className="h-px w-6 bg-gold" />
-          <div className="flex flex-col gap-0.5">
-            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.28em] text-gold">
+          <div className="flex items-center gap-3">
+            <span aria-hidden="true" className="h-px w-9 bg-gold" />
+            <span className="bg-gradient-to-b from-[#F3D78D] via-[#D8B15A] to-[#B67A2E] bg-clip-text pb-[0.2em] font-mono text-xs font-semibold uppercase tracking-[0.32em] text-transparent">
               {profile.title.split(" · ")[0]}
             </span>
-            <span className="font-mono text-[11px] tracking-[0.15em] text-paper/50">
-              {profile.title.split(" · ")[1]}
-            </span>
           </div>
+          <span className="ml-12 font-mono text-[13px] tracking-[0.15em] text-paper/70">
+            {profile.title.split(" · ")[1]}
+          </span>
         </motion.div>
 
         <motion.h1
@@ -142,12 +142,12 @@ export function Hero() {
           className="font-display text-[clamp(2.8rem,5.8vw,5.25rem)] font-normal leading-[1.02] tracking-[-0.03em] max-w-[14ch]"
         >
           {profile.heroLine.map((w, i) => (
-            <span key={i} className="inline-block overflow-hidden pr-[0.18em] align-top">
+            <span key={i} className="inline-block overflow-hidden pb-[0.15em] pr-[0.18em] align-top">
               <motion.span
                 variants={maskUp}
                 className={`inline-block ${
                   w === "signature."
-                    ? "bg-gradient-to-r from-gold to-gold-highlight bg-clip-text italic text-transparent"
+                    ? "bg-gradient-to-b from-[#F3D78D] via-[#D8B15A] to-[#B67A2E] bg-clip-text pb-[0.2em] italic text-transparent"
                     : ""
                 }`}
               >
@@ -161,14 +161,14 @@ export function Hero() {
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
           transition={{ duration: 0.8, ease: EASE_OUT_EXPO, delay: 1.0 }}
-          className="mt-8 block h-px w-10 origin-left bg-gold"
+          className="mt-12 block h-px w-10 origin-left bg-gold"
         />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.1 }}
-          className="mt-8 max-w-[28rem] text-base leading-[1.7] text-paper/70 md:text-lg"
+          className="mt-14 max-w-[33rem] text-base leading-[1.7] text-paper/70 md:text-lg"
         >
           {profile.heroSub}
         </motion.p>
@@ -177,13 +177,13 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.25 }}
-          className="mt-10 flex flex-wrap items-center gap-6"
+          className="mt-14 flex flex-wrap items-center gap-6"
         >
           <Magnetic strength={0.4}>
             <a
               href="#projects"
               data-cursor="View"
-              className="group inline-flex items-center gap-2 bg-gold px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-obsidian transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-gold-highlight hover:shadow-[0_12px_28px_-10px_rgba(198,161,91,0.55)]"
+              className="group inline-flex h-14 items-center gap-2 rounded-xl bg-gold px-8 font-mono text-[11px] uppercase tracking-[0.2em] text-obsidian transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-gold-highlight hover:shadow-[0_12px_28px_-10px_rgba(198,161,91,0.55)]"
             >
               View My Work
               <span aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1">→</span>
@@ -194,9 +194,9 @@ export function Hero() {
               href={profile.resumeUrl}
               download
               data-cursor="Download"
-              className="inline-flex items-center gap-2 border border-gold/50 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-gold hover:text-gold"
+              className="inline-flex h-14 items-center gap-2 rounded-xl border border-gold/50 px-8 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-gold hover:text-gold"
             >
-              View Résumé
+              Download Résumé
               <span aria-hidden="true">↓</span>
             </a>
           </Magnetic>

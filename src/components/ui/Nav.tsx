@@ -17,7 +17,7 @@ const CHAPTERS = [
   { id: "contact", label: "Contact" },
 ];
 
-// Goal-mockup header links. CHAPTERS keeps driving the mobile menu and side rail.
+// Goal-mockup header links. CHAPTERS keeps driving the mobile menu.
 const NAV_LINKS = [
   { id: "top", label: "Home" },
   { id: "about", label: "About" },
@@ -102,17 +102,20 @@ export function Nav() {
           <a
             href="#top"
             data-cursor="Top"
-            className="font-display text-lg tracking-tight"
+            className="group flex items-baseline font-display text-3xl tracking-tight transition-opacity duration-300 hover:opacity-90 md:-ml-16 md:text-4xl"
           >
-            {profile.firstName}
-            <span className="text-gold">.</span>
-            <span className="ml-2 align-super font-mono text-[10px] tracking-[0.25em] text-paper/60">
+            <span className="relative font-semibold">
+              {profile.firstName}
+              <span className="text-paper">.</span>
+              <span className="absolute inset-x-0 -bottom-1 h-px scale-x-0 bg-gold transition-transform duration-300 origin-left group-hover:scale-x-100" />
+            </span>
+            <span className="ml-4 font-sans text-sm tracking-[0.15em] text-gold transition-colors duration-300">
               {profile.credential}
             </span>
           </a>
 
           {/* Desktop center nav — gold underline marks the active section */}
-          <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-14 lg:flex">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.id}
@@ -138,10 +141,10 @@ export function Nav() {
               <a
                 href="#contact"
                 data-cursor="Say hi"
-                className="group inline-flex items-center gap-2 border border-gold/60 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-gold transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-obsidian"
+                className="group hidden items-center gap-2 whitespace-nowrap rounded-xl border border-gold/60 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-gold transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-obsidian sm:inline-flex"
               >
-                Available for Work
                 <span className="h-1.5 w-1.5 rounded-full bg-gold transition-colors group-hover:bg-obsidian" />
+                Available for Work
               </a>
             </Magnetic>
 
@@ -230,44 +233,12 @@ export function Nav() {
                 onClick={() => setMenuOpen(false)}
                 className="font-mono text-xs uppercase tracking-[0.2em] text-gold"
               >
-                Résumé <span aria-hidden="true">↓</span>
+                Download Résumé <span aria-hidden="true">↓</span>
               </a>
             </div>
           </motion.nav>
         )}
       </AnimatePresence>
-
-      {/* Side chapter rail (desktop) — hidden over the Hero, where it would
-          collide with the portrait caption anchored at the same edge */}
-      <nav
-        aria-label="Chapters"
-        aria-hidden={active === "top"}
-        className={`fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-end gap-3 transition-opacity duration-500 lg:flex ${
-          active === "top" ? "pointer-events-none opacity-0" : "opacity-100"
-        }`}
-      >
-        {CHAPTERS.map((c) => (
-          <a
-            key={c.id}
-            href={`#${c.id}`}
-            className="group flex items-center gap-2"
-            data-cursor={c.label}
-          >
-            <span
-              className={`font-mono text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 ${
-                active === c.id ? "text-paper" : "text-paper/40 group-hover:text-paper"
-              }`}
-            >
-              {c.label}
-            </span>
-            <span
-              className={`h-px transition-all duration-300 ${
-                active === c.id ? "w-8 bg-gold" : "w-4 bg-paper/30 group-hover:w-6"
-              }`}
-            />
-          </a>
-        ))}
-      </nav>
 
       {/* Scroll progress bar */}
       <motion.div

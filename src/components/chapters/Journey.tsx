@@ -119,7 +119,11 @@ export function Journey() {
   const { kicker, title, intro, stages } = profile.journey;
 
   return (
-    <section id="experience" data-theme="dark" className="relative bg-obsidian text-paper">
+    <section
+      id="experience"
+      data-theme="dark"
+      className="relative bg-obsidian bg-[linear-gradient(to_bottom,var(--color-navy),var(--color-obsidian)_240px)] text-paper"
+    >
       <div className="mx-auto max-w-[1400px] px-6 py-28 md:px-10 md:py-40 lg:pr-36">
         <Reveal className="kicker mb-16 text-cyan">{kicker}</Reveal>
         <div className="grid gap-10 lg:grid-cols-12">
