@@ -32,9 +32,11 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.8, ease: EASE_OUT_EXPO, delay: 1.6 }}
-        className="pointer-events-none absolute -bottom-[6vw] left-[-4vw] select-none font-display text-[34vw] leading-none tracking-tight text-paper/[0.08] lg:inset-y-0 lg:left-auto lg:right-[-1vw] lg:top-1/2 lg:bottom-auto lg:-translate-y-1/2 lg:text-[20vw]"
+        className="pointer-events-none absolute -bottom-[6vw] left-[-4vw] select-none font-display text-[34vw] leading-none tracking-tight text-paper/[0.08] lg:inset-y-0 lg:bottom-auto lg:left-auto lg:right-[16vw] lg:top-1/2 lg:flex lg:-translate-y-1/2 lg:flex-col lg:items-center lg:text-[17vw] lg:leading-[0.82] lg:text-paper/[0.13]"
       >
-        RMP
+        <span>R</span>
+        <span className="lg:block">M</span>
+        <span className="lg:block">P</span>
       </motion.span>
 
       {/* Gold aura — soft spotlight behind the portrait, kept extremely subtle.
@@ -48,6 +50,16 @@ export function Hero() {
       <div
         aria-hidden
         className="pointer-events-none absolute right-[45vw] top-0 z-0 hidden h-full w-px origin-top rotate-[6deg] bg-gradient-to-b from-transparent via-gold/12 to-transparent lg:block"
+      />
+
+      {/* Gold wedge — bottom-right corner accent from the goal mockup */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 right-0 z-0 hidden h-[46vh] w-[24vw] bg-gradient-to-tl from-gold/70 via-gold/25 to-transparent [clip-path:polygon(100%_18%,100%_100%,0_100%)] lg:block"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 right-[20vw] z-0 hidden h-[60vh] w-px origin-bottom rotate-[32deg] bg-gradient-to-t from-gold/50 to-transparent lg:block"
       />
 
       {/* Portrait — cutout, bottom-anchored, desktop only. Three nested layers:
