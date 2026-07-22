@@ -12,7 +12,11 @@ export function Achievements() {
   const { kicker, title, kpis, credentialsKicker } = profile.achievements;
 
   return (
-    <section id="achievements" data-theme="dark" className="relative bg-navy text-paper">
+    <section
+      id="achievements"
+      data-theme="dark"
+      className="relative bg-navy bg-[linear-gradient(to_bottom,var(--color-obsidian),var(--color-navy)_240px)] text-paper"
+    >
       <div className="mx-auto max-w-[1400px] px-6 py-28 md:px-10 md:py-40 lg:pr-36">
         <div className="mb-16">
           <Reveal className="kicker mb-8 text-cyan">{kicker}</Reveal>

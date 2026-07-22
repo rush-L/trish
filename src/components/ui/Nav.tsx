@@ -17,9 +17,14 @@ const CHAPTERS = [
   { id: "contact", label: "Contact" },
 ];
 
-// Chapters rendered on a dark ground (obsidian/navy) — the side rail's resting
-// label color needs to flip here, or it reads as near-invisible dark-on-dark.
-const DARK_CHAPTERS = new Set(["experience", "achievements", "contact"]);
+// Goal-mockup header links. CHAPTERS keeps driving the mobile menu.
+const NAV_LINKS = [
+  { id: "top", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "achievements", label: "Achievements" },
+  { id: "contact", label: "Contact" },
+];
 
 export function Nav() {
   const { scrollYProgress } = useScroll();
@@ -39,8 +44,9 @@ export function Nav() {
       },
       { rootMargin: "-45% 0px -50% 0px" }
     );
-    CHAPTERS.forEach((c) => {
-      const el = document.getElementById(c.id);
+    const ids = [...new Set([...CHAPTERS, ...NAV_LINKS].map((c) => c.id))];
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
       if (el) io.observe(el);
     });
     const onScroll = () => setSolid(window.scrollY > 40);
@@ -84,43 +90,61 @@ export function Nav() {
   return (
     <>
       {/* Top bar */}
-      <header
+      <motion.header
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
         className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-          solid || menuOpen ? "glass border-b border-ink-15" : ""
+          solid || menuOpen ? "glass-dark border-b border-paper/10" : ""
         }`}
       >
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 md:px-10">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 md:px-10 lg:px-16 lg:py-5">
           <a
             href="#top"
             data-cursor="Top"
-            className="font-display text-lg tracking-tight"
+            className="group flex items-baseline font-display text-3xl tracking-tight transition-opacity duration-300 hover:opacity-90 md:-ml-16 md:text-4xl"
           >
-            {profile.firstName}
-            <span className="text-gold-ink">.</span>
-            <span className="ml-2 align-super font-mono text-[10px] tracking-[0.25em] text-ink-muted">
+            <span className="relative font-semibold">
+              {profile.firstName}
+              <span className="text-paper">.</span>
+              <span className="absolute inset-x-0 -bottom-1 h-px scale-x-0 bg-gold transition-transform duration-300 origin-left group-hover:scale-x-100" />
+            </span>
+            <span className="ml-4 font-sans text-sm tracking-[0.15em] text-gold transition-colors duration-300">
               {profile.credential}
             </span>
           </a>
 
-          <div className="flex items-center gap-3">
-            <Magnetic strength={0.4}>
+          {/* Desktop center nav — gold underline marks the active section */}
+          <nav aria-label="Primary" className="hidden items-center gap-14 lg:flex">
+            {NAV_LINKS.map((l) => (
               <a
-                href={profile.resumeUrl}
-                download
-                data-cursor="Download"
-                className="hidden items-center gap-2 rounded-full border border-graphite/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors hover:bg-graphite hover:text-paper sm:inline-flex"
+                key={l.id}
+                href={`#${l.id}`}
+                data-cursor={l.label}
+                className={`relative pb-1.5 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 ${
+                  active === l.id ? "text-gold" : "text-paper/80 hover:text-paper"
+                }`}
               >
-                Résumé
+                {l.label}
+                <span
+                  aria-hidden="true"
+                  className={`absolute inset-x-0 bottom-0 h-px bg-gold transition-opacity duration-300 ${
+                    active === l.id ? "opacity-100" : "opacity-0"
+                  }`}
+                />
               </a>
-            </Magnetic>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
             <Magnetic strength={0.4}>
               <a
                 href="#contact"
                 data-cursor="Say hi"
-                className="group inline-flex items-center gap-2 rounded-full border border-graphite/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors hover:bg-graphite hover:text-paper"
+                className="group hidden items-center gap-2 whitespace-nowrap rounded-xl border border-gold/60 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-gold transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-obsidian sm:inline-flex"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-gold-ink transition-colors group-hover:bg-cyan" />
-                Available
+                <span className="h-1.5 w-1.5 rounded-full bg-gold transition-colors group-hover:bg-obsidian" />
+                Available for Work
               </a>
             </Magnetic>
 
@@ -138,22 +162,22 @@ export function Nav() {
               <motion.span
                 animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6.5 : 0 }}
                 transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
-                className="block h-px w-6 bg-graphite"
+                className="block h-px w-6 bg-paper"
               />
               <motion.span
                 animate={{ opacity: menuOpen ? 0 : 1 }}
                 transition={{ duration: 0.2 }}
-                className="block h-px w-6 bg-graphite"
+                className="block h-px w-6 bg-paper"
               />
               <motion.span
                 animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6.5 : 0 }}
                 transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
-                className="block h-px w-6 bg-graphite"
+                className="block h-px w-6 bg-paper"
               />
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile/tablet chapter menu */}
       <AnimatePresence>
@@ -209,63 +233,16 @@ export function Nav() {
                 onClick={() => setMenuOpen(false)}
                 className="font-mono text-xs uppercase tracking-[0.2em] text-gold"
               >
-                Résumé <span aria-hidden="true">↓</span>
+                Download Résumé <span aria-hidden="true">↓</span>
               </a>
             </div>
           </motion.nav>
         )}
       </AnimatePresence>
 
-      {/* Side chapter rail (desktop) — hidden over the Hero, where it would
-          collide with the portrait caption anchored at the same edge */}
-      <nav
-        aria-label="Chapters"
-        aria-hidden={active === "top"}
-        className={`fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-end gap-3 transition-opacity duration-500 lg:flex ${
-          active === "top" ? "pointer-events-none opacity-0" : "opacity-100"
-        }`}
-      >
-        {CHAPTERS.map((c) => {
-          const onDark = DARK_CHAPTERS.has(active);
-          return (
-            <a
-              key={c.id}
-              href={`#${c.id}`}
-              className="group flex items-center gap-2"
-              data-cursor={c.label}
-            >
-              <span
-                className={`font-mono text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 ${
-                  active === c.id
-                    ? onDark
-                      ? "text-paper"
-                      : "text-graphite"
-                    : onDark
-                      ? "text-paper/40 group-hover:text-paper"
-                      : "text-ink-muted group-hover:text-graphite"
-                }`}
-              >
-                {c.label}
-              </span>
-              <span
-                className={`h-px transition-all duration-300 ${
-                  active === c.id
-                    ? onDark
-                      ? "w-8 bg-gold"
-                      : "w-8 bg-gold-ink"
-                    : onDark
-                      ? "w-4 bg-paper/30 group-hover:w-6"
-                      : "w-4 bg-ink-muted group-hover:w-6"
-                }`}
-              />
-            </a>
-          );
-        })}
-      </nav>
-
       {/* Scroll progress bar */}
       <motion.div
-        className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left bg-gold-ink"
+        className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left bg-gold"
         style={{ scaleX: progress }}
       />
     </>

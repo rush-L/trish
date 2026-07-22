@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { fraunces, inter, jetbrains } from "@/lib/fonts";
+import { fraunces, inter, jetbrains, playfair } from "@/lib/fonts";
 import { profile } from "@/content/profile";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import Cursor from "@/components/ui/Cursor";
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5f2ec",
-  colorScheme: "light",
+  themeColor: "#0a0e14",
+  colorScheme: "dark",
 };
 
 const personJsonLd = {
@@ -69,9 +69,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable} ${playfair.variable}`}
     >
-      <body className="grain antialiased">
+      <body data-theme="dark" className="grain antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

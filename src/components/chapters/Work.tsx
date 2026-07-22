@@ -34,7 +34,7 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
   const triggerId = `case-study-trigger-${project.index}`;
   const panelId = `case-study-panel-${project.index}`;
   return (
-    <div className="border-b border-ink-15">
+    <div className="border-b border-paper/10">
       <button
         id={triggerId}
         onClick={onToggle}
@@ -43,12 +43,12 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
         aria-expanded={open}
         aria-controls={panelId}
       >
-        <span className="col-span-2 font-mono text-sm text-gold-ink md:col-span-1">{project.index}</span>
+        <span className="col-span-2 font-mono text-sm text-gold md:col-span-1">{project.index}</span>
         <div className="col-span-10 md:col-span-7">
           <h3 className="font-display text-3xl leading-tight transition-transform duration-500 group-hover:translate-x-2 md:text-5xl">
             {project.name}
           </h3>
-          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-muted">
+          <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-paper/60">
             {company} · {role} · {duration}
           </p>
           {metrics.length > 0 && (
@@ -56,7 +56,7 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
               {metrics.map((m) => (
                 <span
                   key={m}
-                  className="rounded-full border border-gold-ink/30 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-gold-ink"
+                  className="rounded-full border border-gold/30 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-gold"
                 >
                   {m}
                 </span>
@@ -64,11 +64,11 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
             </div>
           )}
         </div>
-        <span className="col-span-8 col-start-3 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted md:col-span-3 md:col-start-auto">
+        <span className="col-span-8 col-start-3 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/60 md:col-span-3 md:col-start-auto">
           {project.tag}
         </span>
         <span aria-hidden="true" className="col-span-2 flex justify-end md:col-span-1">
-          <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.4 }} className="text-2xl text-gold-ink">
+          <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.4 }} className="text-2xl text-gold">
             +
           </motion.span>
         </span>
@@ -97,15 +97,16 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
                   <div className="space-y-10">
                     {galleryGroups!.map((group) => (
                       <div key={group.label}>
-                        <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted">
+                        <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/60">
                           {group.label}
                         </p>
                         <Carousel
                           label={`${project.name} — ${group.label}`}
+                          accent="bg-gold"
                           slideClassName="w-[85vw] max-w-[560px] md:w-[560px]"
                         >
                           {group.items.map((g, i) => (
-                            <div key={g.src ?? g.video} className="h-full overflow-hidden border border-ink-15 bg-graphite">
+                            <div key={g.src ?? g.video} className="h-full overflow-hidden border border-paper/10 bg-graphite">
                               <div className="relative aspect-video w-full">
                                 {g.video ? (
                                   <video
@@ -140,9 +141,9 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
                     ))}
                   </div>
                 ) : hasGallery ? (
-                  <Carousel label={`${project.name} gallery`} slideClassName="w-[85vw] max-w-[560px] md:w-[560px]">
+                  <Carousel label={`${project.name} gallery`} accent="bg-gold" slideClassName="w-[85vw] max-w-[560px] md:w-[560px]">
                     {gallery!.map((g, i) => (
-                      <div key={g.src} className="h-full overflow-hidden border border-ink-15 bg-graphite">
+                      <div key={g.src} className="h-full overflow-hidden border border-paper/10 bg-graphite">
                         <div className="relative aspect-video w-full">
                           <Image
                             src={g.src}
@@ -164,7 +165,7 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
                   </Carousel>
                 ) : (
                   <>
-                    <div className="overflow-hidden border border-ink-15 bg-graphite">
+                    <div className="overflow-hidden border border-paper/10 bg-graphite">
                       {hasVideo ? (
                         <video
                           controls
@@ -187,7 +188,7 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
                       )}
                     </div>
                     {imageCaption && (
-                      <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-muted">
+                      <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-paper/60">
                         {imageCaption}
                       </p>
                     )}
@@ -200,15 +201,15 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
               {[
                 {
                   label: "The Problem",
-                  content: <p className="text-[15px] leading-relaxed text-graphite-soft">{project.problem}</p>,
+                  content: <p className="text-[15px] leading-relaxed text-paper/70">{project.problem}</p>,
                 },
                 {
                   label: "Responsibilities",
                   content: (
                     <ul className="space-y-1.5">
                       {project.responsibilities.map((r, i) => (
-                        <li key={i} className="flex gap-2 text-[15px] leading-relaxed text-graphite-soft">
-                          <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-graphite/40" />
+                        <li key={i} className="flex gap-2 text-[15px] leading-relaxed text-paper/70">
+                          <span className="mt-[9px] h-1 w-1 flex-none rounded-full bg-paper/40" />
                           {r}
                         </li>
                       ))}
@@ -224,7 +225,7 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
                             {tools.map((t) => (
                               <span
                                 key={t}
-                                className="rounded-full border border-graphite/25 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-graphite-soft"
+                                className="rounded-full border border-paper/25 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-paper/70"
                               >
                                 {t}
                               </span>
@@ -236,11 +237,11 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
                   : []),
                 {
                   label: "Business Impact",
-                  content: <p className="font-display text-xl text-gold-ink md:text-2xl">{project.outcome}</p>,
+                  content: <p className="font-display text-xl text-gold md:text-2xl">{project.outcome}</p>,
                 },
                 {
                   label: "Lessons Learned",
-                  content: <p className="text-[15px] leading-relaxed text-graphite-soft">{project.takeaway}</p>,
+                  content: <p className="text-[15px] leading-relaxed text-paper/70">{project.takeaway}</p>,
                 },
               ].map((f, i) => (
                 <motion.div
@@ -250,8 +251,8 @@ function CaseStudy({ project, open, onToggle }: { project: Project; open: boolea
                   transition={{ delay: 0.1 + i * 0.05, duration: 0.5 }}
                 >
                   <div className="mb-2 flex items-center gap-3">
-                    <span className="font-mono text-[10px] text-gold-ink">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted">{f.label}</span>
+                    <span className="font-mono text-[10px] text-gold">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/60">{f.label}</span>
                   </div>
                   {f.content}
                 </motion.div>
@@ -282,10 +283,10 @@ export function Work() {
   return (
     <section id="projects" className="relative px-6 py-28 md:px-10 md:py-40">
       <div className="mx-auto max-w-[1400px] lg:pr-36">
-        <Reveal className="kicker mb-10 text-gold-ink">{kicker}</Reveal>
+        <Reveal className="kicker mb-10 text-gold">{kicker}</Reveal>
         <SplitText text={title} className="display-h1 mb-16 font-display" />
 
-        <div className="border-t border-ink-15">
+        <div className="border-t border-paper/10">
           {projects.map((p, i) => (
             <CaseStudy key={i} project={p} open={open.has(i)} onToggle={() => toggle(i)} />
           ))}
