@@ -17,6 +17,15 @@ const CHAPTERS = [
   { id: "contact", label: "Contact" },
 ];
 
+// Goal-mockup header links. CHAPTERS keeps driving the mobile menu and side rail.
+const NAV_LINKS = [
+  { id: "top", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "achievements", label: "Achievements" },
+  { id: "contact", label: "Contact" },
+];
+
 export function Nav() {
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
@@ -35,7 +44,7 @@ export function Nav() {
       },
       { rootMargin: "-45% 0px -50% 0px" }
     );
-    CHAPTERS.forEach((c) => {
+    [...CHAPTERS, { id: "about", label: "About" }].forEach((c) => {
       const el = document.getElementById(c.id);
       if (el) io.observe(el);
     });
@@ -101,25 +110,37 @@ export function Nav() {
             </span>
           </a>
 
-          <div className="flex items-center gap-3">
-            <Magnetic strength={0.4}>
+          {/* Desktop center nav — gold underline marks the active section */}
+          <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
+            {NAV_LINKS.map((l) => (
               <a
-                href={profile.resumeUrl}
-                download
-                data-cursor="Download"
-                className="hidden items-center gap-2 rounded-full border border-paper/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-all duration-300 hover:-translate-y-0.5 hover:border-paper hover:bg-paper hover:text-obsidian sm:inline-flex"
+                key={l.id}
+                href={`#${l.id}`}
+                data-cursor={l.label}
+                className={`relative pb-1.5 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 ${
+                  active === l.id ? "text-gold" : "text-paper/80 hover:text-paper"
+                }`}
               >
-                Download Résumé
+                {l.label}
+                <span
+                  aria-hidden="true"
+                  className={`absolute inset-x-0 bottom-0 h-px bg-gold transition-opacity duration-300 ${
+                    active === l.id ? "opacity-100" : "opacity-0"
+                  }`}
+                />
               </a>
-            </Magnetic>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
             <Magnetic strength={0.4}>
               <a
                 href="#contact"
                 data-cursor="Say hi"
-                className="group inline-flex items-center gap-2 rounded-full border border-paper/25 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-all duration-300 hover:-translate-y-0.5 hover:border-paper hover:bg-paper hover:text-obsidian"
+                className="group inline-flex items-center gap-2 border border-gold/60 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-gold transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-obsidian"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-gold transition-colors group-hover:bg-cyan" />
                 Available for Work
+                <span className="h-1.5 w-1.5 rounded-full bg-gold transition-colors group-hover:bg-obsidian" />
               </a>
             </Magnetic>
 
