@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { ExternalLink, Mail, Phone } from "lucide-react";
 import { useRef } from "react";
 import { profile } from "@/content/profile";
 import { Magnetic } from "@/components/ui/Magnetic";
@@ -23,11 +24,12 @@ export function Hero() {
       ref={ref}
       className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden px-6 pb-10 pt-28 md:px-10"
     >
-      {/* Oversized ghost word drifting in the background */}
+      {/* Oversized ghost word — drifts bottom-left on mobile (no portrait to
+          sit behind there), sits behind the portrait on the right at lg+ */}
       <motion.span
         aria-hidden
         style={{ x: ghostX }}
-        className="pointer-events-none absolute -bottom-[6vw] left-[-4vw] select-none font-display text-[34vw] leading-none text-graphite/[0.04]"
+        className="pointer-events-none absolute -bottom-[6vw] left-[-4vw] select-none font-display text-[34vw] leading-none text-paper/[0.05] lg:inset-y-0 lg:left-auto lg:right-[-2vw] lg:top-1/2 lg:bottom-auto lg:-translate-y-1/2 lg:text-[18vw]"
       >
         RMP
       </motion.span>
@@ -35,32 +37,26 @@ export function Hero() {
       {/* Gold aura */}
       <div className="pointer-events-none absolute right-[-10%] top-[10%] h-[45vw] w-[45vw] rounded-full bg-gold/15 blur-[120px]" />
 
-      {/* Portrait — framed, desktop only */}
+      {/* Portrait — large, edge-to-edge, desktop only */}
       <motion.div
         style={{ y, opacity }}
         initial={{ opacity: 0, x: 24 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.1, ease: EASE_OUT_EXPO, delay: 0.4 }}
-        className="pointer-events-none absolute right-6 top-28 z-10 hidden w-[21vw] max-w-[320px] md:right-10 lg:block"
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[38vw] max-w-[560px] lg:block"
       >
-        <div className="group relative border border-graphite/15 bg-paper-dim p-3 shadow-[0_40px_80px_-24px_rgba(26,28,30,0.3)] transition-shadow duration-500">
-          <span className="absolute -left-px -top-px h-6 w-6 border-l-2 border-t-2 border-gold-ink" aria-hidden />
-          <span className="absolute -bottom-px -right-px h-6 w-6 border-b-2 border-r-2 border-gold-ink" aria-hidden />
-          <div className="relative aspect-[4/5] w-full overflow-hidden">
-            <Image
-              src={profile.media.portrait}
-              alt={profile.fullName}
-              fill
-              priority
-              sizes="320px"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-graphite/15 via-transparent to-transparent" />
-          </div>
+        <div className="relative h-full w-full overflow-hidden">
+          <Image
+            src={profile.media.portrait}
+            alt={profile.fullName}
+            fill
+            priority
+            sizes="38vw"
+            className="object-cover"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-obsidian via-transparent to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian/40 via-transparent to-transparent" />
         </div>
-        <span className="mt-3 block font-mono text-[10px] uppercase tracking-[0.25em] text-ink-muted">
-          {profile.fullName} · {profile.credential}
-        </span>
       </motion.div>
 
       {/* Top meta row */}
@@ -73,12 +69,12 @@ export function Hero() {
       >
         <div className="flex items-center gap-3">
           {/* Small circular portrait — mobile/tablet only; desktop keeps the framed print */}
-          <div className="relative h-9 w-9 flex-none overflow-hidden rounded-full border border-graphite/20 lg:hidden">
+          <div className="relative h-9 w-9 flex-none overflow-hidden rounded-full border border-paper/20 lg:hidden">
             <Image src={profile.media.portrait} alt={profile.fullName} fill sizes="36px" className="object-cover" />
           </div>
-          <span className="kicker text-ink-muted">{profile.title}</span>
+          <span className="kicker text-paper/60">{profile.title}</span>
         </div>
-        <span className="kicker hidden text-ink-muted md:block">{profile.location}</span>
+        <span className="kicker hidden text-paper/60 md:block">{profile.location}</span>
       </motion.div>
 
       {/* Headline */}
@@ -97,7 +93,7 @@ export function Hero() {
             <span key={i} className="inline-block overflow-hidden pr-[0.18em] align-top">
               <motion.span
                 variants={maskUp}
-                className={`inline-block ${w === "signature." ? "italic text-gold-ink" : ""}`}
+                className={`inline-block ${w === "signature." ? "italic text-gold" : ""}`}
               >
                 {w}
               </motion.span>
@@ -109,7 +105,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.1 }}
-          className="measure mt-8 text-lg leading-relaxed text-graphite-soft md:text-xl"
+          className="measure mt-8 text-lg leading-relaxed text-paper/70 md:text-xl"
         >
           {profile.heroSub}
         </motion.p>
@@ -124,7 +120,7 @@ export function Hero() {
             <a
               href="#projects"
               data-cursor="View"
-              className="group inline-flex items-center gap-2 rounded-full bg-gold-ink px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-graphite"
+              className="group inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-obsidian transition-colors hover:bg-paper"
             >
               View My Work
               <span aria-hidden="true" className="transition-transform duration-500 group-hover:translate-x-1">→</span>
@@ -135,40 +131,37 @@ export function Hero() {
               href={profile.resumeUrl}
               download
               data-cursor="Download"
-              className="inline-flex items-center gap-2 rounded-full border border-graphite/25 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-graphite transition-colors hover:bg-graphite hover:text-paper"
+              className="inline-flex items-center gap-2 rounded-full border border-paper/25 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-obsidian"
             >
-              Download Résumé
+              View Resume
             </a>
           </Magnetic>
         </motion.div>
-      </motion.div>
 
-      {/* Bottom row: name + scroll cue */}
-      <motion.div
-        style={{ opacity }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.3 }}
-        className="relative z-10 flex items-end justify-between"
-      >
-        <div className="flex items-baseline gap-3">
-          <span className="font-display text-2xl md:text-3xl">{profile.fullName}</span>
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-gold-ink">
-            {profile.credential}
-          </span>
-        </div>
-        <a
-          href="#ch1"
-          data-cursor="Read"
-          className="group flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 1.35 }}
+          className="mt-6 flex items-center gap-5"
         >
-          Scroll
-          <motion.span
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="inline-block h-8 w-px bg-graphite/40"
-          />
-        </a>
+          {profile.socials.map((s) => {
+            const Icon = s.label === "LinkedIn" ? ExternalLink : s.label === "Email" ? Mail : Phone;
+            return (
+              <Magnetic key={s.label} strength={0.3}>
+                <a
+                  href={s.href}
+                  target={s.label === "LinkedIn" ? "_blank" : undefined}
+                  rel={s.label === "LinkedIn" ? "noopener noreferrer" : undefined}
+                  data-cursor={s.label}
+                  aria-label={s.label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-paper/25 text-paper/70 transition-colors hover:border-paper hover:text-paper"
+                >
+                  <Icon aria-hidden="true" size={15} strokeWidth={1.5} />
+                </a>
+              </Magnetic>
+            );
+          })}
+        </motion.div>
       </motion.div>
     </section>
   );
