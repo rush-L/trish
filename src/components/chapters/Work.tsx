@@ -270,7 +270,7 @@ export function Work() {
   // Independently toggled (not a single-open accordion) — closing a panel
   // above the viewport used to yank the whole page up under Lenis's
   // frame-pinned scroll, burying whatever the user had just opened.
-  const [open, setOpen] = useState<Set<number>>(() => new Set([0]));
+  const [open, setOpen] = useState<Set<number>>(() => new Set());
 
   const toggle = (i: number) =>
     setOpen((prev) => {
