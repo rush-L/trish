@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     images: [profile.media.portrait],
   },
   robots: { index: true, follow: true },
+  verification: { google: "aG-MfX-ahfL4UqnwqZ7voPxSIciuJWFv2lsQhGesfhI" },
 };
 
 export const viewport: Viewport = {
