@@ -16,10 +16,9 @@ export const profile = {
   location: "Metro Manila, Philippines",
   email: "trishasoliscapapas@gmail.com",
   resumeUrl: "/resume/trisha-capapas-resume.pdf",
-  // 🔶 single source for the production domain — swap once deployed (e.g. to
-  // Vercel) and canonical URLs, OpenGraph, robots.txt, and sitemap.xml all
-  // pick it up automatically.
-  siteUrl: "https://trisha.example",
+  // 🔶 single source for the production domain — canonical URLs, OpenGraph,
+  // robots.txt, and sitemap.xml all pick it up automatically.
+  siteUrl: "https://trisha-capapas.vercel.app",
   socials: [
     { label: "LinkedIn", href: "https://linkedin.com/in/trisha-capapas-113a48293" },
     { label: "Email", href: "mailto:trishasoliscapapas@gmail.com" },

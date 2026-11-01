@@ -34,11 +34,14 @@ export const metadata: Metadata = {
     description,
     siteName: profile.fullName,
     locale: "en_US",
+    url: profile.siteUrl,
+    images: [{ url: profile.media.portrait, width: 1200, height: 1200, alt: profile.fullName }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${profile.fullName} — ${profile.credentialFull}`,
     description,
+    images: [profile.media.portrait],
   },
   robots: { index: true, follow: true },
 };
@@ -54,6 +57,8 @@ const personJsonLd = {
   name: profile.fullName,
   jobTitle: profile.title,
   description: profile.statement,
+  url: profile.siteUrl,
+  image: `${profile.siteUrl}${profile.media.portrait}`,
   address: { "@type": "PostalAddress", addressLocality: profile.location },
   knowsAbout: [
     "Marketing Strategy",
@@ -63,6 +68,9 @@ const personJsonLd = {
     "Leadership",
   ],
   hasCredential: profile.credentialFull,
+  sameAs: profile.socials
+    .filter((s) => s.href.startsWith("http"))
+    .map((s) => s.href),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
